@@ -14,7 +14,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 void main() {
 
   testWidgets('Widget login validación @ email', (WidgetTester tester) async {
-        await tester.pumpWidget(const MaterialApp(home: Scaffold(body: LoginScreen(email: '', password: '',))));
+        // await tester.pumpWidget(const MaterialApp(home: Scaffold(body: LoginScreen(email: '', password: '',))));
 
         await tester.enterText(find.byKey(const Key('TextFormFieldLoginEmail')), 'arnaldogmail.com');
         await tester.enterText(find.byKey(const Key('TextFormFieldLoginPassword')), '1234567');
@@ -26,7 +26,7 @@ void main() {
       });
 
   testWidgets('Widget login validación campo vacio email', (WidgetTester tester) async {
-        await tester.pumpWidget(const MaterialApp(home: Scaffold(body: LoginScreen(email: '', password: '',))));
+        // await tester.pumpWidget(const MaterialApp(home: Scaffold(body: LoginScreen(email: '', password: '',))));
 
         await tester.enterText(find.byKey(const Key('TextFormFieldLoginEmail')), '');
         await tester.enterText(find.byKey(const Key('TextFormFieldLoginPassword')), '1234567');
@@ -38,7 +38,7 @@ void main() {
   });
 
   testWidgets('Widget login validación número de caracteres password', (WidgetTester tester) async {
-        await tester.pumpWidget(const MaterialApp(home: Scaffold(body: LoginScreen(email: '', password: '',))));
+        // await tester.pumpWidget(const MaterialApp(home: Scaffold(body: LoginScreen(email: '', password: '',))));
 
         await tester.enterText(find.byKey(const Key('TextFormFieldLoginEmail')), 'arnaldo@gmail.com');
         await tester.enterText(find.byKey(const Key('TextFormFieldLoginPassword')), '12345');
@@ -50,7 +50,7 @@ void main() {
   });
 
   testWidgets('Widget login validación campo vacio password', (WidgetTester tester) async {
-        await tester.pumpWidget(const MaterialApp(home: Scaffold(body: LoginScreen(email: '', password: '',))));
+        // await tester.pumpWidget(const MaterialApp(home: Scaffold(body: LoginScreen(email: '', password: '',))));
 
         await tester.enterText(find.byKey(const Key('TextFormFieldLoginEmail')), 'arnaldo@gmail.com');
         await tester.enterText(find.byKey(const Key('TextFormFieldLoginPassword')), '');
@@ -151,7 +151,7 @@ void main() {
   });
 
   testWidgets('Widget home nevegación detalle', (WidgetTester tester) async {
-        await tester.pumpWidget(const MaterialApp(home: Scaffold(body: LoginScreen(email: '', password: '',))));
+        // await tester.pumpWidget(const MaterialApp(home: Scaffold(body: LoginScreen(email: '', password: '',))));
 
         await tester.enterText(find.byKey(const Key('TextFormFieldLoginEmail')), 'arnaldo@gmail.com');
         await tester.enterText(find.byKey(const Key('TextFormFieldLoginPassword')), '');
