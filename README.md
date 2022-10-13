@@ -1,16 +1,11 @@
-# flutter_application_1
+# f_testing_template
 
-A new Flutter project.
+ <img src="https://user-images.githubusercontent.com/4458129/182161530-20e6e292-b4ba-4ced-9df5-10e1cf99811f.gif" width="300" />
 
-## Getting Started
+Run test with:
 
-This project is a starting point for a Flutter application.
+flutter test      
+flutter test integration_test/authentication_test.dart
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Solution:
+https://github.com/augustosalazar/f_testing
