@@ -1,3 +1,4 @@
+import 'package:f_testing_template/domain/entities/tienda_entidad.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../authentication/login.dart';
@@ -5,12 +6,10 @@ import '../../authentication/login.dart';
 
 class HomePageCliente extends StatelessWidget {
   const HomePageCliente(
-      {Key? key, required this.loggedEmail, required this.loggedPassword, required this.loggedtype})
+      {Key? key, required this.entidad})
       : super(key: key);
 
-  final String loggedEmail;
-  final String loggedPassword;
-  final String loggedtype;
+  final TiendaEnt entidad;
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +22,7 @@ class HomePageCliente extends StatelessWidget {
               onPressed: () {
                 Get.off(() => LoginScreen(
                       key: const Key('LoginScreen'),
-                      email: loggedEmail,
-                      password: loggedPassword,
-                      type: loggedtype,
+                      entidad: entidad,
                     ));
               },
               icon: const Icon(Icons.logout))
@@ -35,7 +32,7 @@ class HomePageCliente extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text(key: const Key('TextHomeHello'), "Hello $loggedEmail"),
+            Text(key: const Key('TextHomeHello'), "Hello $entidad"),
             // ElevatedButton(
             //     key: const Key('ButtonHomeDetail'),
             //     onPressed: () {

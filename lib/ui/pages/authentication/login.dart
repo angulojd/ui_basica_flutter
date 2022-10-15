@@ -1,3 +1,4 @@
+import 'package:f_testing_template/domain/entities/tienda_entidad.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../content/Tienda/home_tienda.dart';
@@ -5,12 +6,10 @@ import '../content/Cliente/home_cliente.dart';
 import 'signup.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key, required this.email, required this.password, required this.type})
+   const LoginScreen({Key? key, required this.entidad})
       : super(key: key);
 
-  final String email;
-  final String password;
-  final String type;
+  final TiendaEnt entidad;
   
 
   @override
@@ -21,7 +20,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _typeController = TextEditingController();
 
   String dropdownValue = 'Tienda';
 
@@ -133,22 +131,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         final form = _formKey.currentState;
                         form!.save();
                         if (form.validate()) {
-                          if (widget.email == _emailController.text &&
-                              widget.password == _passwordController.text &&
-                              widget.type == dropdownValue) {
-                                if (widget.type == "Tienda") {
+                          if (widget.entidad.email == _emailController.text &&
+                              widget.entidad.password == _passwordController.text &&
+                              widget.entidad.type == dropdownValue) {
+                                if (widget.entidad.type == "Tienda") {
                                     Get.to(() => HomePageTienda(
-                                    key: const Key('HomePage'),
-                                    loggedEmail: _emailController.text,
-                                    loggedPassword: _passwordController.text,
-                                    loggedtype: _typeController.text,
+                                    key: const Key('HomePageTienda'),
+                                    entidad: widget.entidad,
                                     ));
                                 } else {
                                     Get.to(() => HomePageCliente(
-                                    key: const Key('HomePage'),
-                                    loggedEmail: _emailController.text,
-                                    loggedPassword: _passwordController.text,
-                                    loggedtype: _typeController.text,
+                                    key: const Key('HomePageCliente'),
+                                    entidad: widget.entidad,
                                     ));
                                 }
                           } else {

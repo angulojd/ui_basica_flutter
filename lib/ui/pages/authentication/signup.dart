@@ -92,11 +92,11 @@ class _SignUpPageState extends State<SignUpPage> {
                       final form = _formKey.currentState;
                       form!.save();
                       if (form.validate()) {
-                        Get.to(() => LoginScreen(
-                            key: const Key('LoginScreen'),
-                            email: _emailController.text,
-                            password: _passwordController.text,
-                            type: _typeController.text));
+                        // Get.to(() => LoginScreen(
+                        //     key: const Key('LoginScreen'),
+                        //     email: _emailController.text,
+                        //     password: _passwordController.text,
+                        //     type: _typeController.text));
                       } else {
                         const snackBar = SnackBar(
                           content: Text('Validation nok'),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'ui/pages/authentication/login.dart';
+import 'package:f_testing_template/domain/entities/tienda_entidad.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,8 +9,7 @@ void main() {
 
 const String email1 = "cliente@uninorte.com";
 const String type1 = "Cliente";
-const String email2 = "tienda@uninorte.com";
-const String type2 = "Tienda";
+TiendaEnt tienda =  TiendaEnt(name: 'Tienda la Hormiguita', email: 'a@a', password: '123456', picture: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Sortavala_market_place.jpg/220px-Sortavala_market_place.jpg', dir: 'Cr 42 A # 55 E 43 / Soledad');
 const String password = "123456";
 
 class MyApp extends StatelessWidget {
@@ -24,11 +24,9 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const LoginScreen(
-          key: Key('LoginScreen'),
-          email: email2,
-          password: password,
-          type: type2,
+        home: LoginScreen(
+          key: const Key('LoginScreen'),
+          entidad: tienda,
         ));
   }
 }
