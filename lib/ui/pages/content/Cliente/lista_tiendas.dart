@@ -56,146 +56,68 @@ class _ListTiendasState extends State<ListTiendas> {
               SizedBox(
                 width: 400,
                 child: ElevatedButton(
-                  onPressed: () {
-                    debugPrint("you have pressed store 1");
-                  },
-                  child: Column(
-                    children: [
-                      Row(
-                        children: const [
-                          Text("This is line 1 Store 1"),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        children: const [
-                          Text("This is line 2 Store 1"),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                    onPressed: () {
+                      debugPrint("you have pressed store 1");
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const Icon(Icons.local_police),
+                        Column(
+                          children: const [
+                            Text("Tienda los toros"),
+                            Text("Cra 43 # 45-98"),
+                            Text("7.2* / 1.5km ")
+                          ],
+                        ),
+                        const Icon(Icons.favorite)
+                      ],
+                    )),
               ),
               const SizedBox(height: 15),
               SizedBox(
                 width: 400,
                 child: ElevatedButton(
-                  onPressed: () {
-                    debugPrint("you have pressed store 1");
-                  },
-                  child: Column(
-                    children: [
-                      Row(
-                        children: const [
-                          Text("This is line 1 Store 1"),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        children: const [
-                          Text("This is line 2 Store 1"),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                    onPressed: () {
+                      debugPrint("you have pressed store 1");
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const Icon(Icons.local_pharmacy),
+                        Column(
+                          children: const [
+                            Text("Tienda los pericos"),
+                            Text("Cra 34 # 84-47"),
+                            Text("9.0* / 3.4km ")
+                          ],
+                        ),
+                        const Icon(Icons.favorite)
+                      ],
+                    )),
               ),
-              const SizedBox(height: 15),
+              const SizedBox(height: 30),
               SizedBox(
                 width: 400,
                 child: ElevatedButton(
-                  onPressed: () {
-                    debugPrint("you have pressed store 1");
-                  },
-                  child: Column(
-                    children: [
-                      Row(
-                        children: const [
-                          Text("This is line 1 Store 1"),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        children: const [
-                          Text("This is line 2 Store 1"),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
+                    onPressed: () {
+                      debugPrint("you have pressed store 1");
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const Icon(Icons.shield),
+                        Column(
+                          children: const [
+                            Text("Tienda La Nacional"),
+                            Text("Cra 12 # 78-105"),
+                            Text("10.0* / 5km ")
+                          ],
+                        ),
+                        const Icon(Icons.favorite)
+                      ],
+                    )),
               ),
-              const SizedBox(height: 15),
-              SizedBox(
-                width: 400,
-                child: ElevatedButton(
-                  onPressed: () {
-                    debugPrint("you have pressed store 1");
-                  },
-                  child: Column(
-                    children: [
-                      Row(
-                        children: const [
-                          Text("This is line 1 Store 1"),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        children: const [
-                          Text("This is line 2 Store 1"),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 15),
-              SizedBox(
-                width: 400,
-                child: ElevatedButton(
-                  onPressed: () {
-                    debugPrint("you have pressed store 1");
-                  },
-                  child: Column(
-                    children: [
-                      Row(
-                        children: const [
-                          Text("This is line 1 Store 1"),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        children: const [
-                          Text("This is line 2 Store 1"),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 15),
-              SizedBox(
-                width: 400,
-                child: ElevatedButton(
-                  onPressed: () {
-                    debugPrint("you have pressed store 1");
-                  },
-                  child: Column(
-                    children: [
-                      Row(
-                        children: const [
-                          Text("This is line 1 Store 1"),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        children: const [
-                          Text("This is line 2 Store 1"),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              )
             ],
           ),
         ));
