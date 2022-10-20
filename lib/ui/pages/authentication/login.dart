@@ -1,4 +1,6 @@
 import 'package:f_testing_template/domain/entities/tienda_entidad.dart';
+import 'package:f_testing_template/ui/pages/content/Cliente/lista_tiendas.dart';
+import 'package:f_testing_template/ui/widgets/lista_productos_t.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../content/Tienda/home_tienda.dart';
@@ -6,11 +8,9 @@ import '../content/Cliente/home_cliente.dart';
 import 'signup.dart';
 
 class LoginScreen extends StatefulWidget {
-   const LoginScreen({Key? key, required this.entidad})
-      : super(key: key);
+  const LoginScreen({Key? key, required this.entidad}) : super(key: key);
 
   final TiendaEnt entidad;
-  
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -35,20 +35,27 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return const ListTiendas();
+                      },
+                    ));
+                  },
+                  child: const Text("Press here to skip to client view"),
+                ),
                 SizedBox(
-                  width: 150,
-                  height: 150,
-                  child: Image.asset('assets/images/tienda.png')),
+                    width: 150,
+                    height: 150,
+                    child: Image.asset('assets/images/tienda.png')),
                 const Text(
                   "MÉRCATE",
                   style: TextStyle(fontSize: 20),
                 ),
-
                 const SizedBox(
                   height: 20,
                 ),
-
                 TextFormField(
                   key: const Key('TextFormFieldLoginEmail'),
                   controller: _emailController,
@@ -62,11 +69,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     return null;
                   },
                 ),
-                
                 const SizedBox(
                   height: 20,
                 ),
-                
                 TextFormField(
                   key: const Key('TextFormFieldLoginPassword'),
                   controller: _passwordController,
@@ -82,19 +87,21 @@ class _LoginScreenState extends State<LoginScreen> {
                     return null;
                   },
                 ),
-
                 const SizedBox(
                   height: 20,
                 ),
-
                 DropdownButtonFormField(
                   key: const Key('TextFormFieldDropdown'),
                   decoration: const InputDecoration(
-                    enabledBorder: OutlineInputBorder( //<-- SEE HERE
-                      borderSide: BorderSide(color: Color.fromARGB(255, 136, 136, 136), width: 0),
+                    enabledBorder: OutlineInputBorder(
+                      //<-- SEE HERE
+                      borderSide: BorderSide(
+                          color: Color.fromARGB(255, 136, 136, 136), width: 0),
                     ),
-                    focusedBorder: OutlineInputBorder( //<-- SEE HERE
-                      borderSide: BorderSide(color: Color.fromARGB(255, 136, 136, 136), width: 0),
+                    focusedBorder: OutlineInputBorder(
+                      //<-- SEE HERE
+                      borderSide: BorderSide(
+                          color: Color.fromARGB(255, 136, 136, 136), width: 0),
                     ),
                     filled: true,
                     fillColor: Color.fromARGB(255, 255, 255, 255),
@@ -106,7 +113,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       dropdownValue = newValue!;
                     });
                   },
-                  items: <String>['Tienda', 'Cliente'].map<DropdownMenuItem<String>>((String value) {
+                  items: <String>['Tienda', 'Cliente']
+                      .map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(
@@ -116,7 +124,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     );
                   }).toList(),
                 ),
-
                 const SizedBox(
                   height: 30,
                 ),
@@ -124,47 +131,49 @@ class _LoginScreenState extends State<LoginScreen> {
                   width: 380,
                   height: 50,
                   child: OutlinedButton(
-                      key: const Key('ButtonLoginSubmit'),
-                      onPressed: () {
-                        // this line dismiss the keyboard by taking away the focus of the TextFormField and giving it to an unused
-                        FocusScope.of(context).requestFocus(FocusNode());
-                        final form = _formKey.currentState;
-                        form!.save();
-                        if (form.validate()) {
-                          if (widget.entidad.email == _emailController.text &&
-                              widget.entidad.password == _passwordController.text &&
-                              widget.entidad.type == dropdownValue) {
-                                if (widget.entidad.type == "Tienda") {
-                                    Get.to(() => HomePageTienda(
-                                    key: const Key('HomePageTienda'),
-                                    entidad: widget.entidad,
-                                    ));
-                                } else {
-                                    Get.to(() => HomePageCliente(
-                                    key: const Key('HomePageCliente'),
-                                    entidad: widget.entidad,
-                                    ));
-                                }
+                    key: const Key('ButtonLoginSubmit'),
+                    onPressed: () {
+                      // this line dismiss the keyboard by taking away the focus of the TextFormField and giving it to an unused
+                      FocusScope.of(context).requestFocus(FocusNode());
+                      final form = _formKey.currentState;
+                      form!.save();
+                      if (form.validate()) {
+                        if (widget.entidad.email == _emailController.text &&
+                            widget.entidad.password ==
+                                _passwordController.text &&
+                            widget.entidad.type == dropdownValue) {
+                          if (widget.entidad.type == "Tienda") {
+                            Get.to(() => HomePageTienda(
+                                  key: const Key('HomePageTienda'),
+                                  entidad: widget.entidad,
+                                ));
                           } else {
-                            const snackBar = SnackBar(
-                              content: Text('User or passwor nok'),
-                            );
-                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                            Get.to(() => HomePageCliente(
+                                  key: const Key('HomePageCliente'),
+                                  entidad: widget.entidad,
+                                ));
                           }
                         } else {
                           const snackBar = SnackBar(
-                            content: Text('Validation nok'),
+                            content: Text('User or passwor nok'),
                           );
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         }
-                      },
-                      style: OutlinedButton.styleFrom(
-                        primary: Colors.white,
-                        backgroundColor: Colors.teal,
-                        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
-                      ),
-                      child: const Text("LOGIN"),
-                      ),
+                      } else {
+                        const snackBar = SnackBar(
+                          content: Text('Validation nok'),
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      }
+                    },
+                    style: OutlinedButton.styleFrom(
+                      primary: Colors.white,
+                      backgroundColor: Colors.teal,
+                      shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                    ),
+                    child: const Text("LOGIN"),
+                  ),
                 ),
                 const SizedBox(
                   height: 20,
