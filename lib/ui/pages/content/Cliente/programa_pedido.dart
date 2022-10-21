@@ -1,3 +1,4 @@
+import 'package:f_testing_template/ui/pages/content/Cliente/metodo_pago.dart';
 import 'package:flutter/material.dart';
 
 class DeliverySchedulePage extends StatefulWidget {
@@ -173,7 +174,13 @@ class _DeliverySchedulePageState extends State<DeliverySchedulePage> {
             ),
             ElevatedButton(
               onPressed: () {
-                
+                Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return const PaymentMethodPage();
+                  },
+                ),
+              );
               },
               child: const Text("Continuar"),
             ),
