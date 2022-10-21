@@ -22,72 +22,163 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
         ),
       ),
       body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const SizedBox(height: 10),
+              SizedBox(
+                width: 280,
+                child: ElevatedButton(
+                  onPressed: () {
+                    debugPrint("youhavepressed de butown");
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      const Icon(
+                        Icons.apple,
+                        size: 40,
+                      ),
+                      Column(
+                        children: const [
+                          Text("Frutas"),
+                          Text("Manzanas(Kg)"),
+                          Text("Precio: 1843/Kg")
+                        ],
+                      ),
+                      Column(
+                        children: const [
+                          Icon(Icons.add),
+                          Text("1"),
+                          Icon(Icons.remove)
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              SizedBox(
+                width: 280,
+                child: ElevatedButton(
+                  onPressed: () {
+                    debugPrint("youhavepressed de butown");
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      const Icon(
+                        Icons.breakfast_dining,
+                        size: 40,
+                      ),
+                      Column(
+                        children: const [
+                          Text("Pan"),
+                          Text("Croissant(Precio por unidad)"),
+                          Text("Precio: 1500/Kg")
+                        ],
+                      ),
+                      Column(
+                        children: const [
+                          Icon(Icons.add),
+                          Text("4"),
+                          Icon(Icons.remove)
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              SizedBox(
+                width: 150,
+                height: 40,
+                child: ElevatedButton(
+                  onPressed: () {
+                    debugPrint("vendido");
+                  },
+                  child: Row(
+                    children: const [
+                      Icon(Icons.delete_forever_outlined),
+                      Text("Vender Carrito")
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              const Text("Pide Tambien"),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SizedBox(
+                    height: 100,
+                    width: 80,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 80,
+                          width: 80,
+                          child: ElevatedButton(
+                              onPressed: () {
+                                debugPrint("debugdebug");
+                              },
+                              child: const Icon(
+                                Icons.wind_power_outlined,
+                                size: 50,
+                              )),
+                        ),
+                        const Text("Abanicos")
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 100,
+                    width: 80,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 80,
+                          width: 80,
+                          child: ElevatedButton(
+                              onPressed: () {
+                                debugPrint("debugdebug");
+                              },
+                              child: const Icon(
+                                Icons.ondemand_video,
+                                size: 50,
+                              )),
+                        ),
+                        const Text("Televisores")
+                      ],
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: SizedBox(
+        height: 70,
+        width: 350,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 10),
-            ElevatedButton(
-              onPressed: () {
-                debugPrint("presionado");
-              },
-              child: SizedBox(
-                width: 300,
-                height: 90,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Column(
-                      children: [
-                        const Icon(Icons.apple),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: const [
-                            Text("Frutas"),
-                            Text("Manzana (1Kg)"),
-                            Text("Precio: 1837/kg"),
-                          ],
-                        ),
-                        const Text("7")
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: const [
+                Text("Total:"),
+                Text("7843"),
+              ],
             ),
-            const SizedBox(height: 10),
-            ElevatedButton(
+            OutlinedButton(
               onPressed: () {
-                debugPrint("presionado");
+                debugPrint("algo");
               },
-              child: SizedBox(
-                width: 300,
-                height: 90,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Icon(Icons.local_police),
-                    Column(
-                      children: [
-                        const Icon(Icons.apple),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: const [
-                            Text("Carnes"),
-                            Text("Pollo (1Kg)"),
-                            Text("Precio: 1950/kg"),
-                          ],
-                        ),
-                        const Text("7")
-                      ],
-                    ),
-                    const Icon(Icons.favorite)
-                  ],
-                ),
-              ),
-            )
+              child: const Text("Continuar"),
+            ),
           ],
         ),
       ),

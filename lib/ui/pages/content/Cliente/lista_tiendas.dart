@@ -86,7 +86,7 @@ class _ListTiendasState extends State<ListTiendas> {
             ),
             const SizedBox(height: 30),
             SizedBox(
-              width: 400,
+              width: 350,
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(
@@ -113,7 +113,7 @@ class _ListTiendasState extends State<ListTiendas> {
                     ),
                     const Icon(
                       Icons.favorite_border,
-                      size: 50,
+                      size: 30,
                     )
                   ],
                 ),
@@ -121,7 +121,7 @@ class _ListTiendasState extends State<ListTiendas> {
             ),
             const SizedBox(height: 30),
             SizedBox(
-              width: 400,
+              width: 350,
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(
@@ -148,7 +148,7 @@ class _ListTiendasState extends State<ListTiendas> {
                     ),
                     const Icon(
                       Icons.favorite_border,
-                      size: 50,
+                      size: 30,
                     )
                   ],
                 ),
@@ -156,7 +156,7 @@ class _ListTiendasState extends State<ListTiendas> {
             ),
             const SizedBox(height: 30),
             SizedBox(
-              width: 400,
+              width: 350,
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(
@@ -183,7 +183,7 @@ class _ListTiendasState extends State<ListTiendas> {
                     ),
                     const Icon(
                       Icons.favorite_border,
-                      size: 50,
+                      size: 30,
                     )
                   ],
                 ),
