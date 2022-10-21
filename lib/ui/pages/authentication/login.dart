@@ -26,6 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       resizeToAvoidBottomInset: false,
       body: Center(
         child: Padding(
@@ -80,39 +81,45 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                DropdownButtonFormField(
-                  key: const Key('TextFormFieldDropdown'),
-                  decoration: const InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      //<-- SEE HERE
-                      borderSide: BorderSide(
-                          color: Color.fromARGB(255, 136, 136, 136), width: 0),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      //<-- SEE HERE
-                      borderSide: BorderSide(
-                          color: Color.fromARGB(255, 136, 136, 136), width: 0),
-                    ),
-                    filled: true,
-                    fillColor: Color.fromARGB(255, 255, 255, 255),
-                  ),
-                  dropdownColor: const Color.fromARGB(255, 255, 255, 255),
-                  value: dropdownValue,
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      dropdownValue = newValue!;
-                    });
-                  },
-                  items: <String>['Tienda', 'Cliente']
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(
-                        value,
-                        style: const TextStyle(fontSize: 16),
+                SizedBox(
+                  height: 60,
+                  width: 371,
+                  child: DropdownButtonFormField(
+                    key: const Key('TextFormFieldDropdown'),
+                    decoration: const InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        //<-- SEE HERE
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 136, 136, 136),
+                            width: 0),
                       ),
-                    );
-                  }).toList(),
+                      focusedBorder: OutlineInputBorder(
+                        //<-- SEE HERE
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 136, 136, 136),
+                            width: 0),
+                      ),
+                      filled: true,
+                      fillColor: Color.fromARGB(255, 255, 255, 255),
+                    ),
+                    dropdownColor: const Color.fromARGB(255, 255, 255, 255),
+                    value: dropdownValue,
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        dropdownValue = newValue!;
+                      });
+                    },
+                    items: <String>['Tienda', 'Cliente']
+                        .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value,
+                          style: const TextStyle(fontSize: 16),
+                        ),
+                      );
+                    }).toList(),
+                  ),
                 ),
                 const SizedBox(
                   height: 30,
@@ -129,9 +136,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       form!.save();
                       if (form.validate()) {
                         if (widget.entidad.email == _emailController.text &&
-                            widget.entidad.password == _passwordController.text &&
-                            widget.entidad.type == dropdownValue
-                            ) {
+                            widget.entidad.password ==
+                                _passwordController.text &&
+                            widget.entidad.type == dropdownValue) {
                           if (widget.entidad.type == "Tienda") {
                             Get.to(() => HomePageTienda(
                                   key: const Key('HomePageTienda'),
@@ -177,7 +184,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   width: 100,
                   height: 20,
-
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(

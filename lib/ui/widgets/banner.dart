@@ -10,7 +10,7 @@ class CustomBanner extends StatelessWidget {
       width: double.infinity,
       height: bannerHeight,
       child: Image.network(
-          "https://images.unsplash.com/photo-1645930916050-523c86d40078?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Sasso_lungo_da_passo_pordoi.jpg/800px-Sasso_lungo_da_passo_pordoi.jpg?20060816170108",
           fit: BoxFit.cover),
     );
   }
