@@ -1,4 +1,5 @@
 import 'package:f_testing_template/ui/pages/content/Cliente/segunda_pantalla.dart';
+import 'package:f_testing_template/ui/pages/content/Cliente/shopping_cart.dart';
 import 'package:flutter/material.dart';
 
 class ListTiendas extends StatefulWidget {
@@ -36,6 +37,18 @@ class _ListTiendasState extends State<ListTiendas> {
                 "Cra 70 #41-9",
                 style: TextStyle(color: Colors.white),
               ),
+            ),
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return const ShoppingCartPage();
+                    },
+                  ),
+                );
+              },
+              icon: const Icon(Icons.shopping_basket_outlined),
             )
           ],
         ),
@@ -92,7 +105,7 @@ class _ListTiendasState extends State<ListTiendas> {
                       ],
                     )),
               ),
-              const SizedBox(height: 15),
+              const SizedBox(height: 30),
               SizedBox(
                 width: 400,
                 child: ElevatedButton(
