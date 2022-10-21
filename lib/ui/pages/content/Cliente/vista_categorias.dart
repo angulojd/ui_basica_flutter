@@ -1,3 +1,4 @@
+import 'package:f_testing_template/ui/pages/content/Cliente/lista_productos.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/segunda_pantalla.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/shopping_cart.dart';
 import 'package:flutter/material.dart';
@@ -97,7 +98,13 @@ class _CategoryViewPageState extends State<CategoryViewPage> {
                         width: 80,
                         child: ElevatedButton(
                             onPressed: () {
-                              debugPrint("debugdebug");
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) {
+                                    return const ListedProductsPage();
+                                  },
+                                ),
+                              );
                             },
                             child: const Icon(
                               Icons.apple,
@@ -118,7 +125,13 @@ class _CategoryViewPageState extends State<CategoryViewPage> {
                         width: 80,
                         child: ElevatedButton(
                             onPressed: () {
-                              debugPrint("debugdebug");
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) {
+                                    return const ListedProductsPage();
+                                  },
+                                ),
+                              );
                             },
                             child: const Icon(
                               Icons.wind_power_outlined,
@@ -139,7 +152,13 @@ class _CategoryViewPageState extends State<CategoryViewPage> {
                         width: 80,
                         child: ElevatedButton(
                             onPressed: () {
-                              debugPrint("debugdebug");
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) {
+                                    return const ListedProductsPage();
+                                  },
+                                ),
+                              );
                             },
                             child: const Icon(
                               Icons.wine_bar,
@@ -160,7 +179,13 @@ class _CategoryViewPageState extends State<CategoryViewPage> {
                         width: 80,
                         child: ElevatedButton(
                             onPressed: () {
-                              debugPrint("debugdebug");
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) {
+                                    return const ListedProductsPage();
+                                  },
+                                ),
+                              );
                             },
                             child: const Icon(
                               Icons.attach_file_sharp,
