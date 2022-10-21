@@ -173,9 +173,21 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                 Text("7843"),
               ],
             ),
-            OutlinedButton(
+            ElevatedButton(
               onPressed: () {
-                debugPrint("algo");
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: const Text("Desea programar su pedido?"),
+                    actions: [
+                      TextButton(
+                        onPressed: ()=>Navigator.pop(context),
+                        child: const Text("Aun no..."),
+                      ),
+                      TextButton(onPressed: ()=>Navigator.pop(context), child: const Text("Programalo!"))
+                    ],
+                  ),
+                );
               },
               child: const Text("Continuar"),
             ),
