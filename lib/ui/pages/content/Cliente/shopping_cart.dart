@@ -1,3 +1,4 @@
+import 'package:f_testing_template/ui/pages/content/Cliente/programa_pedido.dart';
 import 'package:flutter/material.dart';
 
 class ShoppingCartPage extends StatefulWidget {
@@ -125,7 +126,7 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                                 debugPrint("debugdebug");
                               },
                               child: const Icon(
-                                Icons.wind_power_outlined,
+                                Icons.wind_power_sharp,
                                 size: 50,
                               )),
                         ),
@@ -181,10 +182,21 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
                     title: const Text("Desea programar su pedido?"),
                     actions: [
                       TextButton(
-                        onPressed: ()=>Navigator.pop(context),
+                        onPressed: () => Navigator.pop(context),
                         child: const Text("Aun no..."),
                       ),
-                      TextButton(onPressed: ()=>Navigator.pop(context), child: const Text("Programalo!"))
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (BuildContext context) {
+                                return const DeliverySchedulePage();
+                              },
+                            ),
+                          );
+                        },
+                        child: const Text("Programalo!"),
+                      )
                     ],
                   ),
                 );
