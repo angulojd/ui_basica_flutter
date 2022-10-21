@@ -1,3 +1,4 @@
+import 'package:f_testing_template/ui/pages/content/Cliente/detalles_pedido.dart';
 import 'package:flutter/material.dart';
 
 class PaymentMethodPage extends StatefulWidget {
@@ -111,8 +112,37 @@ class _nameState extends State<PaymentMethodPage> {
                   ),
                 ),
               ),
+              
             ],
           ),
+        ),
+      ),
+      bottomNavigationBar: SizedBox(
+        height: 70,
+        width: 350,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: const [
+                Text("Total:"),
+                Text("7843"),
+              ],
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return const DeliveryDetails();
+                  },
+                ),
+              );
+              },
+              child: const Text("Continuar"),
+            ),
+          ],
         ),
       ),
     );
