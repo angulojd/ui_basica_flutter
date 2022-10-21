@@ -35,16 +35,6 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) {
-                        return const ListTiendas();
-                      },
-                    ));
-                  },
-                  child: const Text("Press here to skip to client view"),
-                ),
                 SizedBox(
                     width: 150,
                     height: 150,
@@ -139,9 +129,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       form!.save();
                       if (form.validate()) {
                         if (widget.entidad.email == _emailController.text &&
-                            widget.entidad.password ==
-                                _passwordController.text &&
-                            widget.entidad.type == dropdownValue) {
+                            widget.entidad.password == _passwordController.text &&
+                            widget.entidad.type == dropdownValue
+                            ) {
                           if (widget.entidad.type == "Tienda") {
                             Get.to(() => HomePageTienda(
                                   key: const Key('HomePageTienda'),
@@ -183,7 +173,22 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () => Get.to(const SignUpPage(
                           key: Key('SignUpPage'),
                         )),
-                    child: const Text('Create Account'))
+                    child: const Text('Create Account')),
+                SizedBox(
+                  width: 100,
+                  height: 20,
+
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return const ListTiendas();
+                        },
+                      ));
+                    },
+                    child: const Text("client view"),
+                  ),
+                ),
               ],
             ),
           ),
