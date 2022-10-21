@@ -1,3 +1,4 @@
+import 'package:f_testing_template/ui/pages/content/Cliente/segunda_pantalla.dart';
 import 'package:flutter/material.dart';
 
 class ListTiendas extends StatefulWidget {
@@ -20,6 +21,23 @@ class _ListTiendasState extends State<ListTiendas> {
             },
             icon: const Icon(Icons.arrow_back_ios),
           ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return const ProductListPage();
+                    },
+                  ),
+                );
+              },
+              child: const Text(
+                "Cra 70 #41-9",
+                style: TextStyle(color: Colors.white),
+              ),
+            )
+          ],
         ),
         body: SingleChildScrollView(
           child: Column(
