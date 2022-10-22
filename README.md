@@ -1,4 +1,3 @@
 # MÉRCATE
 
-https://user-images.githubusercontent.com/83561253/196596859-7e811bf8-2b42-49a6-b8e5-58eaff465fd5.mp4
-
+https://user-images.githubusercontent.com/83561253/197316999-f9854962-0f70-4d21-81fe-95cbeae10a0f.mp4
