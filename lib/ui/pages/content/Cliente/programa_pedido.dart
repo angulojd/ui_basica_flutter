@@ -1,6 +1,8 @@
 import 'package:f_testing_template/ui/pages/content/Cliente/metodo_pago.dart';
 import 'package:flutter/material.dart';
 
+import 'detalles_pedido.dart';
+
 class DeliverySchedulePage extends StatefulWidget {
   const DeliverySchedulePage({super.key});
 
@@ -98,7 +100,6 @@ class _DeliverySchedulePageState extends State<DeliverySchedulePage> {
                   children: const[
                     Icon(Icons.circle),
                     Text("7:00am-8:00am"),
-                    Text("texto")
                   ],
                 )),
               ),
@@ -111,7 +112,6 @@ class _DeliverySchedulePageState extends State<DeliverySchedulePage> {
                   children: const[
                     Icon(Icons.circle),
                     Text("8:00am-9:00am"),
-                    Text("texto")
                   ],
                 )),
               ),
@@ -124,7 +124,6 @@ class _DeliverySchedulePageState extends State<DeliverySchedulePage> {
                   children: const[
                     Icon(Icons.circle),
                     Text("9:00am-10:00am"),
-                    Text("texto")
                   ],
                 )),
               ),
@@ -137,7 +136,6 @@ class _DeliverySchedulePageState extends State<DeliverySchedulePage> {
                   children: const[
                     Icon(Icons.circle),
                     Text("10:00am-11:00am"),
-                    Text("texto")
                   ],
                 )),
               ),
@@ -151,10 +149,10 @@ class _DeliverySchedulePageState extends State<DeliverySchedulePage> {
                   children: const[
                     Icon(Icons.circle),
                     Text("11:00am-12:00pm"),
-                    Text("texto")
                   ],
                 )),
               ),
+              const SizedBox(height: 20),
             ],
           ),
         ),
@@ -165,6 +163,7 @@ class _DeliverySchedulePageState extends State<DeliverySchedulePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: const [
@@ -177,7 +176,7 @@ class _DeliverySchedulePageState extends State<DeliverySchedulePage> {
                 Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (BuildContext context) {
-                    return const PaymentMethodPage();
+                    return const DeliveryDetails();
                   },
                 ),
               );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:f_testing_template/domain/entities/tienda_entidad.dart';
 import '../../../widgets/lista_productos_t.dart';
+import 'add_product.dart';
 
 
 
@@ -35,6 +36,8 @@ class TiendaListProduts extends StatelessWidget {
             onPressed: () async {
               if (true/* controller.connection */) {
                 //await userController.addUser();
+                Get.to(() => AddProductT());
+
               } else {
                 Get.snackbar('Refresh failed!', "Can't get users",
                     snackPosition: SnackPosition.BOTTOM,

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
+import 'metodo_pago.dart';
+
 class DeliveryDetails extends StatefulWidget {
   const DeliveryDetails({super.key});
 
   @override
-  State<DeliveryDetails> createState() => _nameState();
+  State<DeliveryDetails> createState() => NameState();
 }
 
-class _nameState extends State<DeliveryDetails> {
+class NameState extends State<DeliveryDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +17,9 @@ class _nameState extends State<DeliveryDetails> {
         title: const Text("COMPRUEBA TU PEDIDO"),
         automaticallyImplyLeading: false,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
           icon: const Icon(Icons.arrow_back_ios),
         ),
       ),
@@ -46,7 +50,7 @@ class _nameState extends State<DeliveryDetails> {
                   ),
                 ),
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {},
                 child: SizedBox(
@@ -69,7 +73,7 @@ class _nameState extends State<DeliveryDetails> {
                   ),
                 ),
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {},
                 child: SizedBox(
@@ -91,7 +95,7 @@ class _nameState extends State<DeliveryDetails> {
                   ),
                 ),
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 20),
               ElevatedButton(
                   onPressed: () {},
                   child: SizedBox(
@@ -132,8 +136,23 @@ class _nameState extends State<DeliveryDetails> {
                         ),
                       ],
                     ),
-                  ))
+                  )
+                ),
+                const SizedBox(height: 20,),
+                ElevatedButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => const AlertDialog(
+                          title: Text("Pedido Realizado")
+                  ),
+                );
+                    },
+                    child: const Text("Continuar"),
+                ),
+
             ],
+
           ),
         ),
       ),

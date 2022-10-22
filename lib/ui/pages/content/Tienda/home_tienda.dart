@@ -1,3 +1,4 @@
+import 'package:f_testing_template/ui/pages/content/Tienda/balance_tienda.dart';
 import 'package:f_testing_template/ui/pages/content/Tienda/editar_datos_tienda.dart';
 import 'package:f_testing_template/ui/pages/content/Tienda/tienda_list_products.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class _HomePageTiendaState extends State<HomePageTienda> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 239, 195, 195),
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
         title: const Text("Home"),
         automaticallyImplyLeading: false,
@@ -52,7 +53,7 @@ class _HomePageTiendaState extends State<HomePageTienda> {
         Text(widget.entidad.name,
             style: const TextStyle(
                 fontSize: 30.0,
-                color: Color.fromARGB(255, 255, 255, 255),
+                color: Color.fromARGB(255, 0, 0, 0),
                 letterSpacing: 2.0,
                 fontWeight: FontWeight.w400)),
         const SizedBox(
@@ -62,9 +63,9 @@ class _HomePageTiendaState extends State<HomePageTienda> {
           widget.entidad.dir,
           style: const TextStyle(
               fontSize: 18.0,
-              color: Color.fromARGB(255, 255, 255, 255),
+              color: Color.fromARGB(255, 0, 0, 0),
               letterSpacing: 2.0,
-              fontWeight: FontWeight.w300),
+              fontWeight: FontWeight.w400),
         ),
         const SizedBox(
           height: 80,
@@ -75,10 +76,7 @@ class _HomePageTiendaState extends State<HomePageTienda> {
           child: OutlinedButton(
             key: const Key('ButtonEditTienda'),
             onPressed: () {
-              Get.to(() => HomePageTienda(
-                    key: const Key('HomePageTienda'),
-                    entidad: widget.entidad,
-                  ));
+              Get.to(() => const BalanceT());
             },
             style: OutlinedButton.styleFrom(
               primary: Colors.white,

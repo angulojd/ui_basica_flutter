@@ -18,8 +18,8 @@ class TiendaEnt {
   String picture;
   String dir;
   // List<ProductoEnt>? productos;
-  var productos = <ProductoEnt>[ProductoEnt(name: 'manzana', type: 'fruta', picture: 'picture', peso: 20, cantidad: 2, precio: 10),
-                                ProductoEnt(name: 'piña', type: 'fruta', picture: 'picture', peso: 40, cantidad: 1, precio: 30)];
+  var productos = <ProductoEnt>[ProductoEnt(name: 'Manzana', type: 'fruta', picture: 'picture', peso: 20, cantidad: 2, precio: 10),
+                                ProductoEnt(name: 'Piña', type: 'fruta', picture: 'picture', peso: 40, cantidad: 1, precio: 30)];
 
   
   

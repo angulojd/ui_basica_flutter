@@ -5,10 +5,10 @@ class PaymentMethodPage extends StatefulWidget {
   const PaymentMethodPage({super.key});
 
   @override
-  State<PaymentMethodPage> createState() => _nameState();
+  State<PaymentMethodPage> createState() => NameState();
 }
 
-class _nameState extends State<PaymentMethodPage> {
+class NameState extends State<PaymentMethodPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +51,6 @@ class _nameState extends State<PaymentMethodPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: const [
                           Text("Tarjeta de credito o debito"),
-                          Text("nosequediceaqui"),
                         ],
                       ),
                     ],
