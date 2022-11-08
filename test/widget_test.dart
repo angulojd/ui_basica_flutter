@@ -5,7 +5,7 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:f_testing_template/ui/pages/authentication/login.dart';
+/* import 'package:f_testing_template/ui/pages/authentication/login.dart';
 import 'package:f_testing_template/ui/pages/authentication/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -208,4 +208,4 @@ void main() {
 
         expect(find.byKey(const Key('TextFormFieldLoginEmail')), findsWidgets);
   });
-}
+} */

@@ -1,32 +1,30 @@
-import 'package:f_testing_template/domain/entities/tienda_entidad.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/lista_tiendas.dart';
-import 'package:f_testing_template/ui/widgets/lista_productos_t.dart';
+import 'package:f_testing_template/services/auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import '../content/Tienda/home_tienda.dart';
-import '../content/Cliente/home_cliente.dart';
-import 'signup.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key, required this.entidad}) : super(key: key);
+  const LoginScreen({Key? key, required this.toggleView}) : super(key: key);
 
-  final TiendaEnt entidad;
+  final Function toggleView;
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
   String dropdownValue = 'Tienda';
+  String email = "";
+  String password = "";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       resizeToAvoidBottomInset: false,
       body: Center(
         child: Padding(
@@ -129,13 +127,19 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 50,
                   child: OutlinedButton(
                     key: const Key('ButtonLoginSubmit'),
-                    onPressed: () {
+                    onPressed: () async {
                       // this line dismiss the keyboard by taking away the focus of the TextFormField and giving it to an unused
                       FocusScope.of(context).requestFocus(FocusNode());
                       final form = _formKey.currentState;
                       form!.save();
                       if (form.validate()) {
-                        if (widget.entidad.email == _emailController.text &&
+                        dynamic result = await _auth.signInWithEmailAndPassword(
+                            _emailController.text, _passwordController.text);
+                        if (result == null) {
+                          // ignore: avoid_print
+                          print("sin poder logear");
+                        }
+                        /* if (widget.entidad.email == _emailController.text &&
                             widget.entidad.password ==
                                 _passwordController.text &&
                             widget.entidad.type == dropdownValue) {
@@ -155,7 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             content: Text('User or passwor nok'),
                           );
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        }
+                        } */
                       } else {
                         const snackBar = SnackBar(
                           content: Text('Validation nok'),
@@ -177,9 +181,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 TextButton(
                     key: const Key('ButtonLoginCreateAccount'),
-                    onPressed: () => Get.to(const SignUpPage(
-                          key: Key('SignUpPage'),
-                        )),
+                    onPressed: () => {
+                          widget.toggleView()
+                          // await _auth.signOut(),
+                          /* Get.to(const SignUpPage(
+                            key: Key('SignUpPage'),
+                          )) */
+                        },
                     child: const Text('Create Account')),
                 SizedBox(
                   width: 100,

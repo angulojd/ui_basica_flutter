@@ -20,10 +20,9 @@ class HomePageCliente extends StatelessWidget {
           IconButton(
               key: const Key('ButtonHomeLogOff'),
               onPressed: () {
-                Get.off(() => LoginScreen(
+                /* Get.off(() => LoginScreen(
                       key: const Key('LoginScreen'),
-                      entidad: entidad,
-                    ));
+                    )); */
               },
               icon: const Icon(Icons.logout))
         ],

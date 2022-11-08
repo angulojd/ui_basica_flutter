@@ -24,12 +24,12 @@ class _EditarDatosTiendastate extends State<EditarDatosTienda> {
   @override
   Widget build(BuildContext context) {
     // UserController userController = Get.find();
-    controllerName.text = widget.entidad.name;
-    controllerDir.text = widget.entidad.dir;
+    /* controllerName.text = widget.entidad.name;
+    controllerDir.text = widget.entidad.dir; */
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.entidad.name),
+        /* title: Text(widget.entidad.name), */
       ),
       
       body: Padding(
@@ -66,8 +66,8 @@ class _EditarDatosTiendastate extends State<EditarDatosTienda> {
                       child: ElevatedButton(
                           onPressed: () async {
                             TiendaEnt tiendaN = widget.entidad;
-                            tiendaN.name = controllerName.text;
-                            tiendaN.dir = controllerDir.text;
+                            /* tiendaN.name = controllerName.text;
+                            tiendaN.dir = controllerDir.text; */
                             // await userController.updateUser(userM);
                             Get.back();
                           },
