@@ -1,3 +1,4 @@
+import 'package:f_testing_template/services/auth.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/segunda_pantalla.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/shopping_cart.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/vista_categorias.dart';
@@ -12,14 +13,16 @@ class ListTiendas extends StatefulWidget {
 
 class _ListTiendasState extends State<ListTiendas> {
   @override
+  final AuthService _auth = AuthService();
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("TIENDAS"),
         automaticallyImplyLeading: false,
         leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
+          onPressed: () async {
+            await _auth.signOut();
+            //Navigator.of(context).pop();
           },
           icon: const Icon(Icons.arrow_back_ios),
         ),

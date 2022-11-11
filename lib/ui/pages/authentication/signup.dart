@@ -1,4 +1,6 @@
 import 'package:f_testing_template/services/auth.dart';
+import 'package:f_testing_template/ui/pages/authentication/login.dart';
+import 'package:f_testing_template/ui/pages/content/Cliente/segunda_pantalla.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -147,7 +149,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           // _dirController.text,
                           // dropdownValue
                         );
-
+                        widget.toggleView();
                         await _auth.signOut();
 
                         /* Get.to(() => LoginScreen(
