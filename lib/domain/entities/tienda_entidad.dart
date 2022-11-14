@@ -1,24 +1,28 @@
 import 'package:f_testing_template/domain/entities/producto_entidad.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class TiendaEnt {
-  TiendaEnt({
-    this.id = "",
-    /* this.name = "",
-    this.type = "",
-    this.email = "",
-    this.password = "",
-    this.picture = "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Sortavala_market_place.jpg/220px-Sortavala_market_place.jpg",
-    this.dir = "", */
-  });
 
   String id;
+  String? key;
   String name = "";
   String type = "";
   String email = "";
   String password = "";
-  String picture =
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Sortavala_market_place.jpg/220px-Sortavala_market_place.jpg";
+  String picture ="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Sortavala_market_place.jpg/220px-Sortavala_market_place.jpg";
   String dir = "";
+
+  TiendaEnt({this.id = ""});
+  TiendaEnt.fromJson(DataSnapshot snapshot, Map<dynamic, dynamic> json)
+      : key = snapshot.key ?? "0",
+        email = json['email'] ?? "email",
+        type = json['type'] ?? 'type',
+        name = json['nombre'] ?? 'nombre',
+        password = json['password'] ?? 'password',
+        dir = json['dir'] ?? 'dir',
+        id = json['uid'] ?? "uid";
+
+  
   // List<ProductoEnt>? productos;
   var productos = <ProductoEnt>[
     ProductoEnt(

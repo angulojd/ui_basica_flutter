@@ -1,6 +1,8 @@
+import 'package:f_testing_template/services/realdb.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/lista_tiendas.dart';
 import 'package:f_testing_template/services/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key, required this.toggleView}) : super(key: key);
@@ -80,49 +82,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 20,
                 ),
                 SizedBox(
-                  height: 60,
-                  width: 371,
-                  child: DropdownButtonFormField(
-                    key: const Key('TextFormFieldDropdown'),
-                    decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        //<-- SEE HERE
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 136, 136, 136),
-                            width: 0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        //<-- SEE HERE
-                        borderSide: BorderSide(
-                            color: Color.fromARGB(255, 136, 136, 136),
-                            width: 0),
-                      ),
-                      filled: true,
-                      fillColor: Color.fromARGB(255, 255, 255, 255),
-                    ),
-                    dropdownColor: const Color.fromARGB(255, 255, 255, 255),
-                    value: dropdownValue,
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        dropdownValue = newValue!;
-                      });
-                    },
-                    items: <String>['Tienda', 'Cliente']
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(
-                          value,
-                          style: const TextStyle(fontSize: 16),
-                        ),
-                      );
-                    }).toList(),
-                  ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                SizedBox(
                   width: 380,
                   height: 50,
                   child: OutlinedButton(
@@ -139,27 +98,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           // ignore: avoid_print
                           print("sin poder logear");
                         }
-                        /* if (widget.entidad.email == _emailController.text &&
-                            widget.entidad.password ==
-                                _passwordController.text &&
-                            widget.entidad.type == dropdownValue) {
-                          if (widget.entidad.type == "Tienda") {
-                            Get.to(() => HomePageTienda(
-                                  key: const Key('HomePageTienda'),
-                                  entidad: widget.entidad,
-                                ));
-                          } else {
-                            Get.to(() => HomePageCliente(
-                                  key: const Key('HomePageCliente'),
-                                  entidad: widget.entidad,
-                                ));
-                          }
-                        } else {
-                          const snackBar = SnackBar(
-                            content: Text('User or passwor nok'),
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                        } */
                       } else {
                         const snackBar = SnackBar(
                           content: Text('Validation nok'),
@@ -181,13 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 TextButton(
                     key: const Key('ButtonLoginCreateAccount'),
-                    onPressed: () => {
-                          widget.toggleView()
-                          // await _auth.signOut(),
-                          /* Get.to(const SignUpPage(
-                            key: Key('SignUpPage'),
-                          )) */
-                        },
+                    onPressed: () => {widget.toggleView()},
                     child: const Text('Create Account')),
                 SizedBox(
                   width: 100,

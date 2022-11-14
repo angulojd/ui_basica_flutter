@@ -1,9 +1,11 @@
-import 'package:f_testing_template/domain/entities/tienda_entidad.dart';
-import 'package:f_testing_template/ui/pages/content/Cliente/segunda_pantalla.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+// ignore_for_file: avoid_print
 
-class AuthService {
+import 'package:f_testing_template/domain/entities/tienda_entidad.dart';
+import 'package:f_testing_template/services/realdb.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
+
+class AuthService extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   //auth change user stream
@@ -37,13 +39,16 @@ class AuthService {
   }
 
   //register in with email & password
-  Future registerWithEmailAndPassword(/* String nombre, */ String email,
-      String password /* , String dir, String type */) async {
+  Future registerWithEmailAndPassword(String nombre, String email,
+      String password, String dir, String type) async {
+    RealTimeDB dbController = Get.find();
+
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      User? user = result.user;
-      return _userFromFirebaseUser(user);
+      await _auth.signOut();
+      await dbController.createUser(
+          email, result.user!.uid, nombre, password, dir, type);
     } catch (e) {
       print(e.toString());
       return null;
@@ -59,5 +64,15 @@ class AuthService {
       print(e.toString());
       return null;
     }
+  }
+
+  String userEmail() {
+    String email = _auth.currentUser!.email ?? 'def@def.com';
+    return email;
+  }
+
+  String getUid() {
+    String uid = _auth.currentUser!.uid;
+    return uid;
   }
 }

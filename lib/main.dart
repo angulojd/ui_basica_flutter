@@ -5,10 +5,21 @@ import 'package:get/get.dart';
 import 'package:f_testing_template/domain/entities/tienda_entidad.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:f_testing_template/config/_configuration_dart';
+import 'package:f_testing_template/services/realdb.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+    await Firebase.initializeApp(
+      name: "pro",
+        options: const FirebaseOptions(
+      apiKey: Configuration.apiKey,
+      authDomain: Configuration.authDomain,
+      databaseURL: Configuration.databaseURL,
+      projectId: Configuration.projectId,
+      messagingSenderId: Configuration.messagingSenderId,
+      appId: Configuration.appId,
+    ));
   runApp(const MyApp());
 }
 
@@ -17,6 +28,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    Get.put(RealTimeDB());
+    // AuthService().signOut();
+
     return StreamProvider<TiendaEnt?>.value(
       value: AuthService().user,
       initialData: null,

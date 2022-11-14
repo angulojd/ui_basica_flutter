@@ -1,6 +1,4 @@
 import 'package:f_testing_template/services/auth.dart';
-import 'package:f_testing_template/ui/pages/authentication/login.dart';
-import 'package:f_testing_template/ui/pages/content/Cliente/segunda_pantalla.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -46,7 +44,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: const InputDecoration(labelText: 'Nombre'),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 5,
                 ),
                 TextFormField(
                   key: const Key('TextFormFieldSignUpEmail'),
@@ -62,7 +60,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   },
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 5,
                 ),
                 TextFormField(
                   key: const Key('TextFormFieldSignUpPassword'),
@@ -80,7 +78,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   },
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 5,
                 ),
                 TextFormField(
                   key: const Key('TextFormFi'),
@@ -88,7 +86,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   decoration: const InputDecoration(labelText: 'Dir'),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 5,
                 ),
                 SizedBox(
                   height: 60,
@@ -143,12 +141,11 @@ class _SignUpPageState extends State<SignUpPage> {
                       if (form.validate()) {
                         dynamic result =
                             await _auth.registerWithEmailAndPassword(
-                          // _nameController.text,
-                          _emailController.text,
-                          _passwordController.text,
-                          // _dirController.text,
-                          // dropdownValue
-                        );
+                                _nameController.text,
+                                _emailController.text,
+                                _passwordController.text,
+                                _dirController.text,
+                                dropdownValue);
                         widget.toggleView();
                         await _auth.signOut();
 
@@ -169,17 +166,11 @@ class _SignUpPageState extends State<SignUpPage> {
                     },
                     child: const Text("Submit")),
                 const SizedBox(
-                  height: 20,
+                  height: 5,
                 ),
                 TextButton(
                     key: const Key('ButtonLoginsing'),
-                    onPressed: () => {
-                          widget.toggleView()
-                          // await _auth.signOut(),
-                          /* Get.to(const SignUpPage(
-                            key: Key('SignUpPage'),
-                          )) */
-                        },
+                    onPressed: () => {widget.toggleView()},
                     child: const Text('login screen')),
               ],
             ),

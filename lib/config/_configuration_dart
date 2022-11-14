@@ -1,0 +1,10 @@
+class Configuration {
+  static const apiKey = "AIzaSyDeYn8SFzaA4Df3VglUNIdGvF6SYlHLlaU";  // tomado de current_key
+  static const authDomain = "784298821285-8vbnf9udns85rq49k1ea96h76ubgpho0.apps.googleusercontent.com"; // tomado de oauth_client
+  static const databaseURL = "https://mercate-2022-default-rtdb.firebaseio.com"; // tomado de firebase_url
+  static const projectId = "mercate-2022"; // tomado de project_id
+  static const storageBucket = "mercate-2022.appspot.com"; // tomado de storage_bucket
+  static const messagingSenderId = ""; //no lo vamos a usar
+  static const appId = "1:784298821285:android:0575fead94df9e828a6f4c"; // tomado de mobilesdk_app_id
+  static const measurementId = ""; //no lo vamos a usar
+}

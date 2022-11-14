@@ -8,7 +8,9 @@ import '../../../../domain/entities/tienda_entidad.dart';
 import '../../../widgets/banner.dart';
 
 class HomePageTienda extends StatefulWidget {
-  const HomePageTienda({Key? key}) : super(key: key);
+  const HomePageTienda({Key? key, required this.entidad}) : super(key: key);
+
+  final TiendaEnt entidad;
 
   @override
   State<HomePageTienda> createState() => _HomePageTiendaState();
@@ -16,7 +18,6 @@ class HomePageTienda extends StatefulWidget {
 
 class _HomePageTiendaState extends State<HomePageTienda> {
   final AuthService _auth = AuthService();
-  TiendaEnt entidad = TiendaEnt();
 
   @override
   Widget build(BuildContext context) {
@@ -29,16 +30,13 @@ class _HomePageTiendaState extends State<HomePageTienda> {
           IconButton(
               key: const Key('ButtonHomeTiendaEditar'),
               onPressed: () {
-                Get.to(() => EditarDatosTienda(entidad: entidad));
+                Get.to(() => EditarDatosTienda(entidad: widget.entidad));
               },
               icon: const Icon(Icons.edit_outlined)),
           IconButton(
               key: const Key('ButtonHomeTiendaLogOff'),
               onPressed: () async {
                 await _auth.signOut();
-                /* Get.off(() => LoginScreen(
-                      key: const Key('LoginScreen'),
-                    )); */
               },
               icon: const Icon(Icons.logout))
         ],
@@ -46,28 +44,28 @@ class _HomePageTiendaState extends State<HomePageTienda> {
       body: Center(
           child: Column(children: [
         Stack(
-            // children: [buildProfileImage(widget.entidad.picture)],
+            children: [buildProfileImage(widget.entidad.picture)],
             ),
         const SizedBox(
           height: 60,
         ),
-        /* Text(widget.entidad.name,
+        Text(widget.entidad.name,
             style: const TextStyle(
                 fontSize: 30.0,
                 color: Color.fromARGB(255, 0, 0, 0),
                 letterSpacing: 2.0,
-                fontWeight: FontWeight.w400)), */
+                fontWeight: FontWeight.w400)),
         const SizedBox(
           height: 20,
         ),
-        /* Text(
+        Text(
           widget.entidad.dir,
           style: const TextStyle(
               fontSize: 18.0,
               color: Color.fromARGB(255, 0, 0, 0),
               letterSpacing: 2.0,
               fontWeight: FontWeight.w400),
-        ), */
+        ),
         const SizedBox(
           height: 80,
         ),
@@ -99,7 +97,7 @@ class _HomePageTiendaState extends State<HomePageTienda> {
             onPressed: () {
               Get.to(() => TiendaListProduts(
                     key: const Key('ProductosTienda'),
-                    entidad: entidad,
+                    entidad: widget.entidad,
                   ));
             },
             style: OutlinedButton.styleFrom(
