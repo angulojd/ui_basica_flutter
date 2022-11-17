@@ -16,7 +16,6 @@ class AuthService extends GetxController {
   //Create a user obj base on firebaseuser
   TiendaEnt? _userFromFirebaseUser(User? user) {
     if (user == null) {
-      print("retornó null");
       return null;
     } else {
       print(user.uid);
@@ -58,7 +57,6 @@ class AuthService extends GetxController {
   //sing out
   Future signOut() async {
     try {
-      print("saliendo");
       return await _auth.signOut();
     } catch (e) {
       print(e.toString());

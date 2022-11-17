@@ -1,8 +1,5 @@
 import 'package:f_testing_template/domain/entities/producto_entidad.dart';
-import 'package:f_testing_template/main.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import '../../domain/entities/tienda_entidad.dart';
 
 class ListaProductosT extends StatelessWidget {
   const ListaProductosT({Key? key, required this.producto}) : super(key: key);
@@ -19,7 +16,7 @@ class ListaProductosT extends StatelessWidget {
         background: Container(
             color: Colors.red,
             alignment: Alignment.centerLeft,
-            child: Padding(
+            child: const Padding(
               padding: EdgeInsets.only(left: 20),
               child: Text(
                 "Deleting",

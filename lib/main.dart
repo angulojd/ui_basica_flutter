@@ -30,6 +30,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     Get.put(RealTimeDB());
+    Get.put(AuthService());
+    RealTimeDB dbController = Get.find();
+    dbController.start();
     // AuthService().signOut();
 
     return StreamProvider<TiendaEnt?>.value(

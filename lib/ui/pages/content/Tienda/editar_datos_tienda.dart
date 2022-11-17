@@ -1,5 +1,5 @@
-
-
+import 'package:f_testing_template/services/auth.dart';
+import 'package:f_testing_template/services/realdb.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:f_testing_template/domain/entities/tienda_entidad.dart';
@@ -23,13 +23,13 @@ class _EditarDatosTiendastate extends State<EditarDatosTienda> {
 
   @override
   Widget build(BuildContext context) {
-    // UserController userController = Get.find();
-    /* controllerName.text = widget.entidad.name;
-    controllerDir.text = widget.entidad.dir; */
+    RealTimeDB dbController = Get.find();
+    AuthService authController = Get.find();
 
     return Scaffold(
       appBar: AppBar(
-        /* title: Text(widget.entidad.name), */
+        title: const Text('Editar Datos'),
+        centerTitle: true,
       ),
       
       body: Padding(
@@ -65,7 +65,15 @@ class _EditarDatosTiendastate extends State<EditarDatosTienda> {
                       flex: 2,
                       child: ElevatedButton(
                           onPressed: () async {
-                            TiendaEnt tiendaN = widget.entidad;
+                            try {
+                              await dbController.updateUser(controllerName.text, controllerDir.text, authController.getUid());
+                            } catch (e) {
+                              // ignore: avoid_print
+                              print(e);
+                              return Future.error(e);
+                            }
+                            
+                            // TiendaEnt tiendaN = widget.entidad;
                             /* tiendaN.name = controllerName.text;
                             tiendaN.dir = controllerDir.text; */
                             // await userController.updateUser(userM);

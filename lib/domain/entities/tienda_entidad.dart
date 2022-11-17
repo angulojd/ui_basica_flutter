@@ -20,7 +20,7 @@ class TiendaEnt {
         name = json['nombre'] ?? 'nombre',
         password = json['password'] ?? 'password',
         dir = json['dir'] ?? 'dir',
-        id = json['uid'] ?? "uid";
+        id = json['uid'] ?? 'uid';
 
   
   // List<ProductoEnt>? productos;
@@ -43,14 +43,13 @@ class TiendaEnt {
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
-      'name': name,
-      'type': type,
+      'key': key,
       'email': email,
+      'type': type,
+      'name': name,
       'password': password,
-      'picture': picture,
       'dir': dir,
-      'productos': productos
+      'id': id
     };
   }
 }

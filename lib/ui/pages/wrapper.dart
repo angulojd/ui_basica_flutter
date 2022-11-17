@@ -8,33 +8,46 @@ import 'package:f_testing_template/ui/pages/content/Tienda/home_tienda.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
+import 'dart:async';
 
-class Wrapper extends StatelessWidget {
+class Wrapper extends StatefulWidget {
   const Wrapper({Key? key}) : super(key: key);
+
+  @override
+  State<Wrapper> createState() => _WrapperState();
+}
+
+class _WrapperState extends State<Wrapper> {
+  var aux = false;
 
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<TiendaEnt?>(context);
     RealTimeDB dbController = Get.find();
-    dbController.start();
+
+    TiendaEnt obteniendouser(users) {
+      return users.firstWhere((element) => element.id == user!.id);
+    }
+
+    Timer(const Duration(seconds: 7), () {
+      setState(() {
+        aux = true;
+      });
+    });
 
     //return home or authentication page
     if (user == null) {
       return const AuthPage();
     } else {
-
-      print("en login está: ${user.id}");
-      List<TiendaEnt> users = dbController.allUsers();
-      TiendaEnt elegido = users.firstWhere((element) => element.id == user.id);
-
-      if (elegido.type == 'Tienda') {
-
-        return HomePageTienda(entidad: elegido);
-
+      if (aux == false) {
+        return const CircularProgressIndicator.adaptive();
       } else {
-
-        return const ListTiendas(); 
-
+        TiendaEnt elegido = obteniendouser(dbController.allUsers());
+        if (elegido.type == 'Tienda') {
+          return HomePageTienda(entidad: elegido);
+        } else {
+          return const ListTiendas();
+        }
       }
     }
   }
