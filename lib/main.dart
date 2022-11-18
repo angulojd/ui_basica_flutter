@@ -10,16 +10,16 @@ import 'package:f_testing_template/services/realdb.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp(
+  await Firebase.initializeApp(
       name: "pro",
-        options: const FirebaseOptions(
-      apiKey: Configuration.apiKey,
-      authDomain: Configuration.authDomain,
-      databaseURL: Configuration.databaseURL,
-      projectId: Configuration.projectId,
-      messagingSenderId: Configuration.messagingSenderId,
-      appId: Configuration.appId,
-    ));
+      options: const FirebaseOptions(
+        apiKey: Configuration.apiKey,
+        authDomain: Configuration.authDomain,
+        databaseURL: Configuration.databaseURL,
+        projectId: Configuration.projectId,
+        messagingSenderId: Configuration.messagingSenderId,
+        appId: Configuration.appId,
+      ));
   runApp(const MyApp());
 }
 
@@ -28,7 +28,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     Get.put(RealTimeDB());
     Get.put(AuthService());
     RealTimeDB dbController = Get.find();
@@ -42,7 +41,10 @@ class MyApp extends StatelessWidget {
           title: 'MÉRCATE',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            primarySwatch: Colors.blue,
+            fontFamily: 'LatoRegular',
+            colorScheme: ColorScheme.fromSwatch().copyWith(
+              primary: const Color(0xFF00BE5D),
+            ),
           ),
           home: const Wrapper(key: Key('WrapperScreen'))),
     );
