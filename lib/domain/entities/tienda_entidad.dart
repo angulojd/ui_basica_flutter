@@ -1,3 +1,4 @@
+
 import 'package:f_testing_template/domain/entities/producto_entidad.dart';
 import 'package:firebase_database/firebase_database.dart';
 
@@ -11,6 +12,8 @@ class TiendaEnt {
   String password = "";
   String picture ="https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Sortavala_market_place.jpg/220px-Sortavala_market_place.jpg";
   String dir = "";
+  List<dynamic> dataList = [];
+
 
   TiendaEnt({this.id = ""});
   TiendaEnt.fromJson(DataSnapshot snapshot, Map<dynamic, dynamic> json)
@@ -28,17 +31,15 @@ class TiendaEnt {
     ProductoEnt(
         name: 'Manzana',
         type: 'fruta',
-        picture: 'picture',
-        peso: 20,
-        cantidad: 2,
-        precio: 10),
+        peso: '20',
+        cantidad: '2',
+        precio: '10'),
     ProductoEnt(
         name: 'Piña',
         type: 'fruta',
-        picture: 'picture',
-        peso: 40,
-        cantidad: 1,
-        precio: 30)
+        peso: '40',
+        cantidad: '1',
+        precio: '30')
   ];
 
   Map<String, dynamic> toMap() {

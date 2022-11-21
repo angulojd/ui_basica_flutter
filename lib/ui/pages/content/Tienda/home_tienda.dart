@@ -1,4 +1,5 @@
 import 'package:f_testing_template/services/auth.dart';
+import 'package:f_testing_template/services/mapa.dart';
 import 'package:f_testing_template/services/realdb.dart';
 import 'package:f_testing_template/ui/pages/content/Tienda/balance_tienda.dart';
 import 'package:f_testing_template/ui/pages/content/Tienda/editar_datos_tienda.dart';
@@ -40,17 +41,25 @@ class _HomePageTiendaState extends State<HomePageTienda> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
-        title: const Text("Home"),
+        title: const Text(
+          "Home",
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        ),
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
               key: const Key('ButtonHomeTiendaEditar'),
+              iconSize: 25,
+              tooltip: 'Editar Datos',
               onPressed: () {
-                Get.to(() => EditarDatosTienda(entidad: widget.entidad));
+                // Get.to(() => EditarDatosTienda(entidad: widget.entidad));
+                Get.to(const MapaUI());
               },
               icon: const Icon(Icons.edit_outlined)),
           IconButton(
               key: const Key('ButtonHomeTiendaLogOff'),
+              iconSize: 25,
+              tooltip: 'Cerrar Sesion',
               onPressed: () async {
                 await _auth.signOut();
               },
@@ -60,10 +69,7 @@ class _HomePageTiendaState extends State<HomePageTienda> {
       body: Center(
           child: Column(children: [
         Stack(
-          children: [
-            buildProfileImage(
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Sortavala_market_place.jpg/220px-Sortavala_market_place.jpg")
-          ],
+          children: [buildProfileImage('assets/images/logo_tienda.png')],
         ),
         const Expanded(
           child: SizedBox(
@@ -73,23 +79,21 @@ class _HomePageTiendaState extends State<HomePageTienda> {
         Obx(
           () => Text(obteniendousername(users),
               style: const TextStyle(
-                  fontSize: 30.0,
-                  color: Color.fromARGB(255, 0, 0, 0),
-                  letterSpacing: 2.0,
-                  fontWeight: FontWeight.w400)),
+                  fontSize: 40.0,
+                  color: Color(0xFF00BE5D),
+                  // letterSpacing: 2.0,
+                  fontWeight: FontWeight.bold)),
         ),
-        const Expanded(
-          child: SizedBox(
-            height: 20,
-          ),
+        const SizedBox(
+          height: 20,
         ),
         Obx(
           () => Text(
             obteniendouserdir(users),
             style: const TextStyle(
-                fontSize: 18.0,
-                color: Color.fromARGB(255, 0, 0, 0),
-                letterSpacing: 2.0,
+                fontSize: 20.0,
+                color: Color(0xFF00BE5D),
+                // letterSpacing: 2.0,
                 fontWeight: FontWeight.w400),
           ),
         ),
@@ -108,11 +112,15 @@ class _HomePageTiendaState extends State<HomePageTienda> {
             },
             style: OutlinedButton.styleFrom(
               primary: Colors.white,
-              backgroundColor: Colors.teal,
+              elevation: 15.0,
+              backgroundColor: const Color(0xFF00BE5D),
               shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10))),
+                  borderRadius: BorderRadius.all(Radius.circular(40))),
             ),
-            child: const Text("Balance"),
+            child: const Text(
+              "Balance",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
           ),
         ),
         const Expanded(
@@ -133,11 +141,15 @@ class _HomePageTiendaState extends State<HomePageTienda> {
             },
             style: OutlinedButton.styleFrom(
               primary: Colors.white,
-              backgroundColor: Colors.teal,
+              elevation: 15.0,
+              backgroundColor: const Color(0xFF00BE5D),
               shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10))),
+                  borderRadius: BorderRadius.all(Radius.circular(40))),
             ),
-            child: const Text("Mis Productos"),
+            child: const Text(
+              "Mis Productos",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
           ),
         ),
         const Expanded(
@@ -153,12 +165,12 @@ class _HomePageTiendaState extends State<HomePageTienda> {
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
-        const CustomBanner(150),
+        const CustomBanner(180),
         SizedBox(
-          height: 150,
-          width: 150,
+          height: 180,
+          width: 180,
           child: CircleAvatar(
-            backgroundImage: NetworkImage(img),
+            backgroundImage: AssetImage(img),
             radius: 90.0,
           ),
         )

@@ -40,7 +40,15 @@ class _WrapperState extends State<Wrapper> {
       return const AuthPage();
     } else {
       if (aux == false) {
-        return const CircularProgressIndicator.adaptive();
+        return const SizedBox(
+          width: 20,
+          height: 20,
+          child: CircularProgressIndicator(
+            backgroundColor: Colors.cyanAccent,
+            strokeWidth: 10,
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
+          ),
+        );
       } else {
         TiendaEnt elegido = obteniendouser(dbController.allUsers());
         if (elegido.type == 'Tienda') {

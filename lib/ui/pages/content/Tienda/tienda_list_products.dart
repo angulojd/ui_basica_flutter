@@ -1,4 +1,6 @@
+import 'package:f_testing_template/domain/entities/producto_entidad.dart';
 import 'package:f_testing_template/services/auth.dart';
+import 'package:f_testing_template/services/productodb.dart';
 import 'package:f_testing_template/services/realdb.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,27 +20,29 @@ class TiendaListProduts extends StatefulWidget {
 class _TiendaListProdutsState extends State<TiendaListProduts> {
   final AuthService auth = AuthService();
   RealTimeDB dbController = Get.find();
+  ProductoDB productoController = Get.find();
 
   get users => dbController.allUsers();
+  get products => productoController.allproducts();
 
-  TiendaEnt obteniendouser(users) {
-    return users.firstWhere((element) => element.id == widget.entidad.id);
-  }
-
-  String obteniendouserdir(users) {
-    TiendaEnt elegido =
-        users.firstWhere((element) => element.id == widget.entidad.id);
-    return elegido.dir;
+  List<ProductoEnt> obteniendouserproducts(products) {
+    return products.where((p) => p.dueno == widget.entidad.id).toList();
+    // return products.firstWhere((element) => element.dueno == widget.entidad.id);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text("Mis Productos"),
+          title: const Text(
+            "Mis Productos",
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          ),
           centerTitle: true,
           actions: <Widget>[
             IconButton(
+                iconSize: 25,
+                tooltip: 'Borrar Todo',
                 key: const Key('deleteAllButton'),
                 onPressed: () {
                   //userController.deleteAll();
@@ -46,8 +50,13 @@ class _TiendaListProdutsState extends State<TiendaListProduts> {
                 icon: const Icon(Icons.delete))
           ]),
       floatingActionButton: FloatingActionButton(
+        tooltip: 'Añadir Producto',
+        backgroundColor: const Color(0xFF00BE5D),
         key: const Key('addProductButton'),
-        child: const Icon(Icons.add),
+        child: const Icon(
+          Icons.add,
+          size: 35,
+          ),
         onPressed: () async {
           Get.to(() => const AddProductT());
         },
@@ -61,9 +70,10 @@ class _TiendaListProdutsState extends State<TiendaListProduts> {
 
   Widget _getXlistView() {
     return Obx(() => ListView.builder(
-          itemCount: obteniendouser(users).productos.length,
+      padding: const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
+          itemCount: obteniendouserproducts(products).length,
           itemBuilder: (context, index) {
-            final producto = obteniendouser(users).productos[index];
+            final producto = obteniendouserproducts(products)[index];
             return ListaProductosT(producto: producto);
           },
         ));

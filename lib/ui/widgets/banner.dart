@@ -9,7 +9,7 @@ class CustomBanner extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       height: bannerHeight,
-      child: Image.asset('assets/images/cielo.jpg',
+      child: Image.asset('assets/images/fondo_tienda.jpg',
           fit: BoxFit.cover)
     );
   }

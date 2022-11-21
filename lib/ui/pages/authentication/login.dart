@@ -1,6 +1,5 @@
 import 'package:f_testing_template/services/auth.dart';
 import 'package:flutter/material.dart';
-import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key, required this.toggleView}) : super(key: key);
@@ -26,11 +25,9 @@ class _LoginScreenState extends State<LoginScreen> {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(
-            'assets/images/back.png'
-            ),
-            fit: BoxFit.cover,
-          ),
+          image: AssetImage('assets/images/back.png'),
+          fit: BoxFit.cover,
+        ),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -53,58 +50,64 @@ class _LoginScreenState extends State<LoginScreen> {
                   Container(
                     width: 500,
                     height: 240,
-                    padding: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(25),
-                      color: Colors.white
-                    ),
-                    child: Column(
-                      children: [
-                        TextFormField(
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            // color: Color(0xFF00BE5D)
-                            ),
-                          key: const Key('TextFormFieldLoginEmail'),
-                          controller: _emailController,
-                          decoration: const InputDecoration(
-                            labelText: 'ID',
-                            ),
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Enter emailx";
-                            } else if (!value.contains('@')) {
-                              return "Enter valid email address";
-                            }
-                            return null;
-                          },
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        TextFormField(
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold
-                            ),
-                          key: const Key('TextFormFieldLoginPassword'),
-                          controller: _passwordController,
-                          decoration:
-                              const InputDecoration(labelText: "Contraseña"),
-                          keyboardType: TextInputType.number,
-                          obscureText: true,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Enter password";
-                            } else if (value.length < 6) {
-                              return "Password should have at least 6 characters";
-                            }
-                            return null;
-                          },
+                      color: Colors.white,
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color.fromARGB(255, 154, 154, 154),
+                          offset: Offset(0.0, 10.0),
+                          blurRadius: 20.0,
                         ),
                       ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            style: const TextStyle(
+                              fontSize: 20,
+                            ),
+                            key: const Key('TextFormFieldLoginEmail'),
+                            controller: _emailController,
+                            decoration: const InputDecoration(
+                              labelText: 'ID',
+                            ),
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "Enter email";
+                              } else if (!value.contains('@')) {
+                                return "Enter valid email address";
+                              }
+                              return null;
+                            },
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                            style: const TextStyle(
+                                fontSize: 20, /* fontWeight: FontWeight.bold */),
+                            key: const Key('TextFormFieldLoginPassword'),
+                            controller: _passwordController,
+                            decoration:
+                                const InputDecoration(labelText: "Contraseña"),
+                            keyboardType: TextInputType.number,
+                            obscureText: true,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "Enter password";
+                              } else if (value.length < 6) {
+                                return "Password should have at least 6 characters";
+                              }
+                              return null;
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -121,15 +124,21 @@ class _LoginScreenState extends State<LoginScreen> {
                         final form = _formKey.currentState;
                         form!.save();
                         if (form.validate()) {
-                          dynamic result = await _auth.signInWithEmailAndPassword(
-                              _emailController.text, _passwordController.text);
+                          dynamic result =
+                              await _auth.signInWithEmailAndPassword(
+                                  _emailController.text,
+                                  _passwordController.text);
                           if (result == null) {
-                            // ignore: avoid_print
-                            print("sin poder logear");
+                            const snackBar = SnackBar(
+                              content: Text('Validación Erronea'),
+                            );
+                            // ignore: use_build_context_synchronously
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
                           }
                         } else {
                           const snackBar = SnackBar(
-                            content: Text('Validation nok'),
+                            content: Text('Validación Erronea'),
                           );
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         }
@@ -137,16 +146,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: OutlinedButton.styleFrom(
                         primary: Colors.white,
                         backgroundColor: const Color(0xFF00BE5D),
+                        elevation: 15.0,
                         shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(40))),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(40))),
                       ),
                       child: const Text(
                         "Iniciar Seción",
                         style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold
-                        ),
-                        ),
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -155,12 +164,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   TextButton(
                       key: const Key('ButtonLoginCreateAccount'),
                       onPressed: () => {widget.toggleView()},
-                      child: const Text('Registrarse',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold
-                        ),
+                      child: const Text(
+                        'Registrarse',
+                        style: TextStyle(
+                            color: Color(0xFFA7A7A7),
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold),
                       )),
                   /* SizedBox(
                     width: 100,

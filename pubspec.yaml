@@ -42,8 +42,8 @@ dependencies:
   loggy: ^2.0.3
   firebase_database: ^10.0.5
   assorted_layout_widgets: ^6.1.1
-  # google_maps_flutter: ^2.2.1
-  # google_maps_flutter_web: ^0.4.0+3
+  google_maps_flutter: ^2.2.1
+  google_maps_flutter_web: ^0.4.0+3
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +64,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/
+    - assets/night_mode.json
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

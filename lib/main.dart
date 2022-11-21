@@ -1,4 +1,5 @@
 import 'package:f_testing_template/services/auth.dart';
+import 'package:f_testing_template/services/productodb.dart';
 import 'package:f_testing_template/ui/pages/wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,8 +31,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(RealTimeDB());
     Get.put(AuthService());
+    Get.put(ProductoDB());
     RealTimeDB dbController = Get.find();
     dbController.start();
+    ProductoDB productsController = Get.find();
+    productsController.start();
     // AuthService().signOut();
 
     return StreamProvider<TiendaEnt?>.value(
