@@ -14,6 +14,8 @@ class ProductoDB extends GetxController {
 
   late StreamSubscription<DatabaseEvent> updateEntryStreamSubscription;
 
+  late StreamSubscription<DatabaseEvent> deleteEntryStreamSubscription;
+
   get allproducts => _productos;
 
   // método para comenzar a escuchar cambios en la "tabla" userList de la base de datos
@@ -24,6 +26,9 @@ class ProductoDB extends GetxController {
 
     updateEntryStreamSubscription =
         databaseRef.child("productList").onChildChanged.listen(_onEntryChanged);
+
+    deleteEntryStreamSubscription =
+        databaseRef.child("productList").onChildRemoved.listen(_onEntryRemoved);
   }
 
 // cuando obtenemos un evento con un nuevo producto lo agregamos a _products
@@ -45,6 +50,15 @@ class ProductoDB extends GetxController {
     print(json);
     _productos[_productos.indexOf(oldEntry)] =
         ProductoEnt.fromJson(event.snapshot, json);
+  }
+
+// cuando obtenemos un evento con un producto eliminado lo quitamos de _products
+  _onEntryRemoved(DatabaseEvent event) {
+    print('removed');
+    var oldEntry = _productos.firstWhere((entry) {
+      return entry.id == event.snapshot.key;
+    });
+    _productos.removeAt(_productos.indexOf(oldEntry));
   }
 
   // método para actualizar un producto
@@ -69,10 +83,48 @@ class ProductoDB extends GetxController {
       await databaseRef
           .child('productList')
           .child(pid)
-          .update({'cantidad': '${aux+1}'});
+          .update({'cantidad': '${aux + 1}'});
     } catch (error) {
       print(error);
       return Future.error(error);
+    }
+  }
+
+  //método para eliminar un producto
+  Future<void> deleteallproductsuser(String dueno) async {
+    print("Deleting all products in realTime for pid: $dueno");
+    int aux = _productos.where((p0) => p0.dueno == dueno).length;
+    // List<int> aux = [];
+    try {
+      for (var i = 0; i < aux; i++) {
+        for (var i = 0; i < _productos.length; i++) {
+          if (_productos[i].dueno == dueno) {
+            print("Deleting product name: ${_productos[i].id}");
+            await databaseRef
+                .child('productList')
+                .child(_productos[i].id)
+                .remove();
+            // aux.add(i);
+          }
+        }
+      }
+    } catch (e) {
+      print(e);
+      return Future.error(e);
+    }
+  }
+
+  //método para eliminar un producto
+  Future<void> deleteproductsuser(String id) async {
+    print("Deleting product in realTime for pid: $id");
+    try {
+      await databaseRef
+      .child('productList')
+      .child(id)
+      .remove();
+    } catch (e) {
+      print(e);
+      return Future.error(e);
     }
   }
 
@@ -82,16 +134,14 @@ class ProductoDB extends GetxController {
     int aux = int.parse(cantidad);
     if (aux != 0) {
       try {
-      await databaseRef
-          .child('productList')
-          .child(pid)
-          .update({'cantidad': '${aux-1}'});
-    } catch (error) {
-      print(error);
-      return Future.error(error);
-    }
-    } else {
-      print('no se puede bajar la cantidad');
+        await databaseRef
+            .child('productList')
+            .child(pid)
+            .update({'cantidad': '${aux - 1}'});
+      } catch (error) {
+        print(error);
+        return Future.error(error);
+      }
     }
   }
 

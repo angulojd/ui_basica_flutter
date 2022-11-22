@@ -1,4 +1,5 @@
 import 'package:f_testing_template/domain/entities/producto_entidad.dart';
+import 'package:f_testing_template/services/auth.dart';
 import 'package:f_testing_template/services/productodb.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,6 +15,7 @@ class ListaProductosT extends StatefulWidget {
 
 class _ListaProductosTState extends State<ListaProductosT> {
   ProductoDB productController = Get.find();
+  AuthService auth = AuthService();
   get products => productController.allproducts();
 
   ProductoEnt obteniendoproduct(products) {
@@ -77,7 +79,7 @@ class _ListaProductosTState extends State<ListaProductosT> {
             )),
         onDismissed: (direction) {
           // Remove the item from the data source.
-          //userController.deleteUser(user.id);
+          productController.deleteproductsuser(widget.producto.id);
         },
         child: Card(
           elevation: 6,
@@ -138,7 +140,6 @@ class _ListaProductosTState extends State<ListaProductosT> {
                     onPressed: () => {
                           productController.updatecantidad(widget.producto.id,
                               obteniendoproduct(products).cantidad)
-                          /* controller.updatecantidad(index) */
                         },
                     icon: const Icon(
                       Icons.arrow_upward,

@@ -1,7 +1,6 @@
 import 'package:f_testing_template/services/auth.dart';
 import 'package:f_testing_template/services/mapa.dart';
 import 'package:f_testing_template/services/realdb.dart';
-import 'package:f_testing_template/ui/pages/content/Tienda/home_tienda.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:f_testing_template/domain/entities/tienda_entidad.dart';
@@ -101,14 +100,6 @@ class _EditarDatosTiendastate extends State<EditarDatosTienda> {
                   const SizedBox(
                     height: 20,
                   ),
-                  /* TextField(
-                      style: const TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold),
-                      key: const Key('TextFieldDir'),
-                      controller: controllerDir,
-                      decoration: const InputDecoration(
-                        labelText: 'Dirección',
-                      )), */
                 ],
               ),
             ),

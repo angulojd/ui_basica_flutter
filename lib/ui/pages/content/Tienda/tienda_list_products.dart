@@ -45,6 +45,7 @@ class _TiendaListProdutsState extends State<TiendaListProduts> {
                 tooltip: 'Borrar Todo',
                 key: const Key('deleteAllButton'),
                 onPressed: () {
+                  productoController.deleteallproductsuser(widget.entidad.id);
                   //userController.deleteAll();
                 },
                 icon: const Icon(Icons.delete))

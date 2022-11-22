@@ -1,5 +1,4 @@
 import 'package:f_testing_template/services/auth.dart';
-import 'package:f_testing_template/services/mapa.dart';
 import 'package:f_testing_template/services/realdb.dart';
 import 'package:f_testing_template/ui/pages/content/Tienda/balance_tienda.dart';
 import 'package:f_testing_template/ui/pages/content/Tienda/editar_datos_tienda.dart';
