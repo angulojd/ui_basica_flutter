@@ -48,13 +48,27 @@ class RealTimeDB extends GetxController {
   }
 
   // método para actualizar un usuario
-  Future<void> updateUser(nombre, dir, uid) async {
+  Future<void> updateUser(nombre, uid) async {
     print("Updating user in realTime for uid: $uid");
     try {
       await databaseRef
           .child('userList')
           .child(uid)
-          .update({'nombre': nombre, 'dir': dir});
+          .update({'nombre': nombre});
+    } catch (error) {
+      print(error);
+      return Future.error(error);
+    }
+  }
+
+  // método para actualizar dir de un user
+  Future<void> updateUserDir(dir, uid) async {
+    print("Updating user Dir in realTime for uid: $uid");
+    try {
+      await databaseRef
+          .child('userList')
+          .child(uid)
+          .update({'dir': dir});
     } catch (error) {
       print(error);
       return Future.error(error);

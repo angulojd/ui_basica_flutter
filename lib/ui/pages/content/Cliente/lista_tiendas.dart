@@ -14,6 +14,7 @@ class ListTiendas extends StatefulWidget {
 class _ListTiendasState extends State<ListTiendas> {
   @override
   final AuthService _auth = AuthService();
+  
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

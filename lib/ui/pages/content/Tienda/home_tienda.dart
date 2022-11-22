@@ -52,8 +52,8 @@ class _HomePageTiendaState extends State<HomePageTienda> {
               iconSize: 25,
               tooltip: 'Editar Datos',
               onPressed: () {
-                // Get.to(() => EditarDatosTienda(entidad: widget.entidad));
-                Get.to(const MapaUI());
+                Get.to(() => EditarDatosTienda(
+                    entidad: widget.entidad, dir: widget.entidad.dir));
               },
               icon: const Icon(Icons.edit_outlined)),
           IconButton(
@@ -67,7 +67,9 @@ class _HomePageTiendaState extends State<HomePageTienda> {
         ],
       ),
       body: Center(
-          child: Column(children: [
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
         Stack(
           children: [buildProfileImage('assets/images/logo_tienda.png')],
         ),
@@ -87,14 +89,17 @@ class _HomePageTiendaState extends State<HomePageTienda> {
         const SizedBox(
           height: 20,
         ),
-        Obx(
-          () => Text(
-            obteniendouserdir(users),
-            style: const TextStyle(
-                fontSize: 20.0,
-                color: Color(0xFF00BE5D),
-                // letterSpacing: 2.0,
-                fontWeight: FontWeight.w400),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(73, 0, 73, 0),
+          child: Obx(
+            () => Text(
+              obteniendouserdir(users),
+              style: const TextStyle(
+                  fontSize: 20.0,
+                  color: Color(0xFF00BE5D),
+                  // letterSpacing: 2.0,
+                  fontWeight: FontWeight.w400),
+            ),
           ),
         ),
         const Expanded(
