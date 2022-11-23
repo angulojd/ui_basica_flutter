@@ -1,4 +1,5 @@
 import 'package:f_testing_template/ui/pages/content/Cliente/lista_productos.dart';
+import 'package:f_testing_template/ui/pages/content/Cliente/productos.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/segunda_pantalla.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/shopping_cart.dart';
 import 'package:flutter/material.dart';
@@ -101,7 +102,7 @@ class _CategoryViewPageState extends State<CategoryViewPage> {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (BuildContext context) {
-                                    return const ListedProductsPage();
+                                    return const ProductList();
                                   },
                                 ),
                               );

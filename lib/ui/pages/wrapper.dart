@@ -4,6 +4,7 @@ import 'package:f_testing_template/domain/entities/tienda_entidad.dart';
 import 'package:f_testing_template/services/realdb.dart';
 import 'package:f_testing_template/ui/pages/authentication/auth_page.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/lista_tiendas.dart';
+import 'package:f_testing_template/ui/pages/content/Cliente/vista_categorias.dart';
 import 'package:f_testing_template/ui/pages/content/Tienda/home_tienda.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -54,7 +55,7 @@ class _WrapperState extends State<Wrapper> {
         if (elegido.type == 'Tienda') {
           return HomePageTienda(entidad: elegido);
         } else {
-          return const ListTiendas();
+          return const CategoryViewPage();
         }
       }
     }
