@@ -3,9 +3,9 @@
 import 'package:f_testing_template/domain/entities/tienda_entidad.dart';
 import 'package:f_testing_template/services/realdb.dart';
 import 'package:f_testing_template/ui/pages/authentication/auth_page.dart';
-import 'package:f_testing_template/ui/pages/content/Cliente/lista_tiendas.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/vista_categorias.dart';
 import 'package:f_testing_template/ui/pages/content/Tienda/home_tienda.dart';
+import 'package:f_testing_template/ui/pages/sala_espera.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
@@ -44,11 +44,7 @@ class _WrapperState extends State<Wrapper> {
         return const SizedBox(
           width: 20,
           height: 20,
-          child: CircularProgressIndicator(
-            backgroundColor: Colors.cyanAccent,
-            strokeWidth: 10,
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
-          ),
+          child: SalaEspera()
         );
       } else {
         TiendaEnt elegido = obteniendouser(dbController.allUsers());

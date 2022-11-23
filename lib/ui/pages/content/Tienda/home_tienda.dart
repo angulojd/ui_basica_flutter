@@ -66,9 +66,7 @@ class _HomePageTiendaState extends State<HomePageTienda> {
         ],
       ),
       body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Stack(
           children: [buildProfileImage('assets/images/logo_tienda.png')],
         ),
@@ -81,7 +79,8 @@ class _HomePageTiendaState extends State<HomePageTienda> {
           () => Text(obteniendousername(users),
               style: const TextStyle(
                   fontSize: 40.0,
-                  color: Color(0xFF00BE5D),
+                  color: Color(0xFFA7A7A7),
+                  fontStyle: FontStyle.italic,
                   // letterSpacing: 2.0,
                   fontWeight: FontWeight.bold)),
         ),
@@ -89,13 +88,13 @@ class _HomePageTiendaState extends State<HomePageTienda> {
           height: 20,
         ),
         Padding(
-          padding: const EdgeInsets.fromLTRB(73, 0, 73, 0),
+          padding: const EdgeInsets.fromLTRB(53, 0, 43, 0),
           child: Obx(
             () => Text(
-              obteniendouserdir(users),
+              'Latitud: ${obteniendouserdir(users).substring(7,25)}\nLongitud: ${obteniendouserdir(users).substring(26)}',
               style: const TextStyle(
                   fontSize: 20.0,
-                  color: Color(0xFF00BE5D),
+                  color: Color(0xFFA7A7A7),
                   // letterSpacing: 2.0,
                   fontWeight: FontWeight.w400),
             ),
