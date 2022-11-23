@@ -1,8 +1,15 @@
 import 'package:f_testing_template/ui/pages/content/Cliente/lista_productos.dart';
+import 'package:f_testing_template/ui/pages/content/Cliente/mallacategorias.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/productos.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/segunda_pantalla.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/shopping_cart.dart';
+import 'package:f_testing_template/ui/pages/content/Cliente/vistademalla.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../../../domain/entities/producto_entidad.dart';
+import '../../../../services/auth.dart';
+import '../../../../services/productodb.dart';
 
 class CategoryViewPage extends StatefulWidget {
   const CategoryViewPage({super.key});
@@ -12,17 +19,28 @@ class CategoryViewPage extends StatefulWidget {
 }
 
 class _CategoryViewPageState extends State<CategoryViewPage> {
+  final AuthService auth = AuthService();
+  ProductoDB productoController = Get.find();
+  get products => productoController.allproducts();
+
+  List<ProductoEnt> obteniendouserproducts(products) {
+    var visto = Set<String>();
+    List<ProductoEnt> lista = products.where((p) => visto.add(p.type)).toList();
+    return lista;
+    // return products.firstWhere((element) => element.dueno == widget.entidad.id);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("CATEGORIAS"),
+        title: const Text("Categorias"),
         automaticallyImplyLeading: false,
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            AuthService().signOut();
           },
-          icon: const Icon(Icons.arrow_back_ios),
+          icon: const Icon(Icons.logout),
         ),
         actions: [
           TextButton(
@@ -57,7 +75,7 @@ class _CategoryViewPageState extends State<CategoryViewPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: const [
@@ -76,132 +94,29 @@ class _CategoryViewPageState extends State<CategoryViewPage> {
                 Icon(Icons.settings_outlined)
               ],
             ),
-            const SizedBox(height: 15),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
-                Text("Categorias Disponibles:"),
-                SizedBox(width: 100),
-                SizedBox(width: 100),
-              ],
-            ),
-            const SizedBox(height: 15),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(
-                  height: 100,
-                  width: 80,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 80,
-                        width: 80,
-                        child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (BuildContext context) {
-                                    return const ProductList();
-                                  },
-                                ),
-                              );
-                            },
-                            child: const Icon(
-                              Icons.apple,
-                              size: 50,
-                            )),
-                      ),
-                      const Text("Frutas")
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 100,
-                  width: 80,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 80,
-                        width: 80,
-                        child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (BuildContext context) {
-                                    return const ListedProductsPage();
-                                  },
-                                ),
-                              );
-                            },
-                            child: const Icon(
-                              Icons.wind_power_outlined,
-                              size: 50,
-                            )),
-                      ),
-                      const Text("Abanicos")
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 100,
-                  width: 80,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 80,
-                        width: 80,
-                        child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (BuildContext context) {
-                                    return const ListedProductsPage();
-                                  },
-                                ),
-                              );
-                            },
-                            child: const Icon(
-                              Icons.wine_bar,
-                              size: 50,
-                            )),
-                      ),
-                      const Text("Vinos")
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 100,
-                  width: 80,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 80,
-                        width: 80,
-                        child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (BuildContext context) {
-                                    return const ListedProductsPage();
-                                  },
-                                ),
-                              );
-                            },
-                            child: const Icon(
-                              Icons.attach_file_sharp,
-                              size: 50,
-                            )),
-                      ),
-                      const Text("Clips")
-                    ],
-                  ),
-                ),
-              ],
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: _getXlistView(),
             ),
           ],
         ),
       ),
     );
+  }
+
+  Widget _getXlistView() {
+    return Obx(() => GridView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3, crossAxisSpacing: 12, mainAxisSpacing: 12),
+          padding: const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
+          itemCount: obteniendouserproducts(products).length,
+          itemBuilder: (context, index) {
+            final producto = obteniendouserproducts(products)[index];
+            return CategoryGridView(producto: producto);
+          },
+        ));
   }
 }
