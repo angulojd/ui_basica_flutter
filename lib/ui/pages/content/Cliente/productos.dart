@@ -1,6 +1,7 @@
 import 'package:f_testing_template/domain/entities/producto_entidad.dart';
 import 'package:f_testing_template/services/auth.dart';
 import 'package:f_testing_template/services/productodb.dart';
+import 'package:f_testing_template/ui/pages/content/Cliente/Lista.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/segunda_pantalla.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/shopping_cart.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/vistademalla.dart';
@@ -60,6 +61,10 @@ class _ProductListState extends State<ProductList> {
           ),
           IconButton(
             onPressed: () {
+              for (var k = 0; k < Listilla.cantidadescarrito.length; k++) {
+                debugPrint("Producto Numero "
+                    "${k.toString()}: Nombre:${Listilla.nombrescarrito[k]} Cantidad: ${Listilla.cantidadescarrito[k]} Codigo: ${Listilla.codigoscarrito[k]}");
+              }
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (BuildContext context) {

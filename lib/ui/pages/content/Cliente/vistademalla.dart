@@ -1,6 +1,7 @@
 import 'package:f_testing_template/domain/entities/producto_entidad.dart';
 import 'package:f_testing_template/services/auth.dart';
 import 'package:f_testing_template/services/productodb.dart';
+import 'package:f_testing_template/ui/pages/content/Cliente/Lista.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -60,6 +61,9 @@ class _ProductGridViewState extends State<ProductsGridView> {
               onPressed: () {
                 debugPrint(
                     "haz pedido ${hola.text} Unidades de ${widget.producto.name} con codigo ${widget.producto.id}");
+                Listilla.nombrescarrito.add(widget.producto.name);
+                Listilla.cantidadescarrito.add(hola.text);
+                Listilla.codigoscarrito.add(widget.producto.id);
                 Navigator.of(context).pop();
               },
               child: const Text("submit"),

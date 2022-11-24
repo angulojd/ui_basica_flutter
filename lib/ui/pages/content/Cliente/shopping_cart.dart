@@ -1,5 +1,13 @@
-import 'package:f_testing_template/ui/pages/content/Cliente/programa_pedido.dart';
+import 'dart:ffi';
+import 'package:f_testing_template/domain/entities/producto_entidad.dart';
+import 'package:f_testing_template/services/auth.dart';
+import 'package:f_testing_template/services/productodb.dart';
+import 'package:f_testing_template/ui/pages/content/Cliente/Lista.dart';
+import 'package:f_testing_template/ui/pages/content/Cliente/carrito.dart';
+import 'package:f_testing_template/ui/pages/content/Cliente/recibo.dart';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ShoppingCartPage extends StatefulWidget {
   const ShoppingCartPage({super.key});
@@ -9,11 +17,54 @@ class ShoppingCartPage extends StatefulWidget {
 }
 
 class _ShoppingCartPageState extends State<ShoppingCartPage> {
+  final AuthService auth = AuthService();
+  ProductoDB productoController = Get.find();
+  get products => productoController.allproducts();
+
+  String calcularcarrito(List<ProductoEnt> products) {
+    debugPrint(products.length.toString());
+    bool satisfecho;
+    List<ProductoEnt> temp = [];
+    int j;
+    for (int k = 0; k < Listilla.cantidadescarrito.length; k++) {
+      temp = products
+          .where((objeto) => objeto.name == Listilla.nombrescarrito[k])
+          .toList();
+      satisfecho = false;
+      j = 0;
+      debugPrint(temp.length.toString());
+      while (!satisfecho) {
+        if (int.parse(temp[j].cantidad) >=
+            int.parse(Listilla.cantidadescarrito[k])) {
+          Recibo.cantidadproducto.add(Listilla.cantidadescarrito[k]);
+          Recibo.nombreproducto.add(temp[j].name);
+          Recibo.nombretienda.add(temp[j].dueno.toString());
+          satisfecho = true;
+        } else {
+          Recibo.cantidadproducto.add(temp[j].cantidad);
+          Recibo.nombreproducto.add(temp[j].name);
+          Recibo.nombretienda.add(temp[j].dueno.toString());
+        }
+        j++;
+      }
+    }
+    for (int p = 0; p < Recibo.cantidadproducto.length; p++) {
+      debugPrint(Recibo.cantidadproducto[p]);
+      debugPrint(Recibo.nombreproducto[p]);
+      debugPrint(Recibo.nombretienda[p]);
+    }
+    return "hola";
+    //var visto = Set<String>();
+    //List<ProductoEnt> lista = products.where((p) => visto.add(p.type)).toList();
+    //return lista;
+    // return products.firstWhere((element) => element.dueno == widget.entidad.id);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("CARRITO DE COMPRAS"),
+        title: const Text("Categorias"),
         automaticallyImplyLeading: false,
         leading: IconButton(
           onPressed: () {
@@ -22,190 +73,24 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
           icon: const Icon(Icons.arrow_back_ios),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const SizedBox(height: 10),
-              SizedBox(
-                width: 280,
-                child: ElevatedButton(
-                  onPressed: () {
-                    debugPrint("youhavepressed de butown");
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      const Icon(
-                        Icons.apple,
-                        size: 40,
-                      ),
-                      Column(
-                        children: const [
-                          Text("Frutas"),
-                          Text("Manzanas(Kg)"),
-                          Text("Precio: 1843/Kg")
-                        ],
-                      ),
-                      Column(
-                        children: const [
-                          Icon(Icons.add),
-                          Text("1"),
-                          Icon(Icons.remove)
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              SizedBox(
-                width: 280,
-                child: ElevatedButton(
-                  onPressed: () {
-                    debugPrint("youhavepressed de butown");
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      const Icon(
-                        Icons.breakfast_dining,
-                        size: 40,
-                      ),
-                      Column(
-                        children: const [
-                          Text("Pan"),
-                          Text("Croissant(Precio por unidad)"),
-                          Text("Precio: 1500/Kg")
-                        ],
-                      ),
-                      Column(
-                        children: const [
-                          Icon(Icons.add),
-                          Text("4"),
-                          Icon(Icons.remove)
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              SizedBox(
-                width: 150,
-                height: 40,
-                child: ElevatedButton(
-                  onPressed: () {
-                    debugPrint("vendido");
-                  },
-                  child: Row(
-                    children: const [
-                      Icon(Icons.delete_forever_outlined),
-                      Text("Vender Carrito")
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              const Text("Pide Tambien"),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(
-                    height: 100,
-                    width: 80,
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 80,
-                          width: 80,
-                          child: ElevatedButton(
-                              onPressed: () {
-                                debugPrint("debugdebug");
-                              },
-                              child: const Icon(
-                                Icons.wind_power_sharp,
-                                size: 50,
-                              )),
-                        ),
-                        const Text("Abanicos")
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 100,
-                    width: 80,
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 80,
-                          width: 80,
-                          child: ElevatedButton(
-                              onPressed: () {
-                                debugPrint("debugdebug");
-                              },
-                              child: const Icon(
-                                Icons.ondemand_video,
-                                size: 50,
-                              )),
-                        ),
-                        const Text("Televisores")
-                      ],
-                    ),
-                  ),
-                ],
-              )
-            ],
-          ),
-        ),
-      ),
-      bottomNavigationBar: SizedBox(
-        height: 70,
-        width: 350,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
-                Text("Total:"),
-                Text("7843"),
-              ],
-            ),
-            ElevatedButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: const Text("Desea programar su pedido?"),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(context),
-                        child: const Text("Aun no..."),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (BuildContext context) {                   
-                                return const DeliverySchedulePage();
-                              },
-                            ),
-                          );
-                        },
-                        child: const Text("Programalo!"),
-                      )
-                    ],
-                  ),
-                );
-              },
-              child: const Text("Continuar"),
-            ),
-          ],
-        ),
-      ),
+      body: SingleChildScrollView(child: generador()),
+    );
+  }
+
+  Widget generador() {
+    return GridView.builder(
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3, crossAxisSpacing: 12, mainAxisSpacing: 12),
+      padding: const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
+      itemCount: calcularcarrito(products).length,
+      itemBuilder: (context, index) {
+        final name = Recibo.nombreproducto[index];
+        final store = Recibo.nombretienda[index];
+        final cuant = Recibo.cantidadproducto[index];
+        return Carrito(nombre: name, tienda: store, cantidad: cuant);
+      },
     );
   }
 }

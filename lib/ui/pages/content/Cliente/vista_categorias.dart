@@ -1,3 +1,4 @@
+import 'package:f_testing_template/ui/pages/content/Cliente/lista.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/lista_productos.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/mallacategorias.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/productos.dart';
@@ -60,6 +61,10 @@ class _CategoryViewPageState extends State<CategoryViewPage> {
           ),
           IconButton(
             onPressed: () {
+              for (var k = 0; k < Listilla.cantidadescarrito.length; k++) {
+                debugPrint("Producto Numero"
+                    "  ${k.toString()}: Nombre:${Listilla.nombrescarrito[k]} Cantidad: ${Listilla.cantidadescarrito[k]} Codigo: ${Listilla.codigoscarrito[k]}");
+              }
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (BuildContext context) {
