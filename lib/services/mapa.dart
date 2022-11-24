@@ -1,14 +1,10 @@
-import 'dart:convert';
-
 import 'package:f_testing_template/services/auth.dart';
 import 'package:f_testing_template/services/realdb.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/services.dart' show rootBundle;
-
 import '../domain/entities/tienda_entidad.dart';
-import '../ui/pages/content/Tienda/editar_datos_tienda.dart';
 
 class MapaUI extends StatefulWidget {
   const MapaUI({Key? key, required this.entidad}) : super(key: key);
