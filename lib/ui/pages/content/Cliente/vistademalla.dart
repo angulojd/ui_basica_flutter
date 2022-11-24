@@ -14,6 +14,7 @@ class ProductsGridView extends StatefulWidget {
 }
 
 class _ProductGridViewState extends State<ProductsGridView> {
+  final hola = TextEditingController();
   ProductoDB productController = Get.find();
   AuthService auth = AuthService();
   get products => productController.allproducts();
@@ -29,7 +30,8 @@ class _ProductGridViewState extends State<ProductsGridView> {
       color: const Color(0xFF00BE5D),
       child: ElevatedButton(
         onPressed: () {
-          debugPrint("presionaste el boton" + widget.producto.name);
+          openDialog();
+          debugPrint("presionaste el boton " + widget.producto.name);
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -42,4 +44,27 @@ class _ProductGridViewState extends State<ProductsGridView> {
       ),
     );
   }
+
+  Future openDialog() => showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text("¿Cuantas Unidades Quieres?"),
+          content: TextField(
+            controller: hola,
+            keyboardType: TextInputType.number,
+            decoration:
+                const InputDecoration(hintText: "Ingresa la cantidad a pedir"),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                debugPrint(
+                    "haz pedido ${hola.text} Unidades de ${widget.producto.name} con codigo ${widget.producto.id}");
+                Navigator.of(context).pop();
+              },
+              child: const Text("submit"),
+            )
+          ],
+        ),
+      );
 }

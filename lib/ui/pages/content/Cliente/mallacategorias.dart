@@ -34,7 +34,7 @@ class _CategoryGridViewState extends State<CategoryGridView> {
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (BuildContext context) {
-                return const ProductList();
+                return ProductList(categoria: widget.producto.type);
               },
             ),
           );

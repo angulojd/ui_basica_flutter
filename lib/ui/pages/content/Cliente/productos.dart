@@ -9,7 +9,8 @@ import 'package:get/get.dart';
 import '../../../widgets/lista_productos_t.dart';
 
 class ProductList extends StatefulWidget {
-  const ProductList({Key? key}) : super(key: key);
+  const ProductList({Key? key, required this.categoria}) : super(key: key);
+  final String categoria;
 
   @override
   State<ProductList> createState() => _ProductListState();
@@ -22,7 +23,9 @@ class _ProductListState extends State<ProductList> {
 
   List<ProductoEnt> obteniendouserproducts(products) {
     var visto = Set<String>();
-    List<ProductoEnt> lista = products.where((p) => visto.add(p.name)).toList();
+    List<ProductoEnt> lista =
+        products.where((p) => p.type == widget.categoria).toList();
+    lista = lista.where((p) => visto.add(p.name)).toList();
     return lista;
     // return products.firstWhere((element) => element.dueno == widget.entidad.id);
   }
