@@ -21,7 +21,7 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
   ProductoDB productoController = Get.find();
   get products => productoController.allproducts();
 
-  String calcularcarrito(List<ProductoEnt> products) {
+  void calcularcarrito(List<ProductoEnt> products) {
     debugPrint(products.length.toString());
     bool satisfecho;
     List<ProductoEnt> temp = [];
@@ -39,11 +39,19 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
           Recibo.cantidadproducto.add(Listilla.cantidadescarrito[k]);
           Recibo.nombreproducto.add(temp[j].name);
           Recibo.nombretienda.add(temp[j].dueno.toString());
+          Recibo.precioorden.add((int.parse(Listilla.cantidadescarrito[k])) *
+              (int.parse(temp[j].precio)));
           satisfecho = true;
         } else {
           Recibo.cantidadproducto.add(temp[j].cantidad);
           Recibo.nombreproducto.add(temp[j].name);
           Recibo.nombretienda.add(temp[j].dueno.toString());
+          Recibo.precioorden
+              .add((int.parse(temp[j].cantidad)) * (int.parse(temp[j].precio)));
+          Listilla.cantidadescarrito[k] =
+              (int.parse(Listilla.cantidadescarrito[k]) -
+                      int.parse(temp[j].cantidad))
+                  .toString();
         }
         j++;
       }
@@ -53,18 +61,14 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
       debugPrint(Recibo.nombreproducto[p]);
       debugPrint(Recibo.nombretienda[p]);
     }
-    return "hola";
-    //var visto = Set<String>();
-    //List<ProductoEnt> lista = products.where((p) => visto.add(p.type)).toList();
-    //return lista;
-    // return products.firstWhere((element) => element.dueno == widget.entidad.id);
   }
 
   @override
   Widget build(BuildContext context) {
+    calcularcarrito(products);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Categorias"),
+        title: const Text("Mi Carrito"),
         automaticallyImplyLeading: false,
         leading: IconButton(
           onPressed: () {
@@ -84,12 +88,18 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3, crossAxisSpacing: 12, mainAxisSpacing: 12),
       padding: const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
-      itemCount: calcularcarrito(products).length,
+      itemCount: Recibo.nombreproducto.length,
       itemBuilder: (context, index) {
         final name = Recibo.nombreproducto[index];
         final store = Recibo.nombretienda[index];
         final cuant = Recibo.cantidadproducto[index];
-        return Carrito(nombre: name, tienda: store, cantidad: cuant);
+        final price = Recibo.precioorden[index];
+        return Carrito(
+          nombre: name,
+          tienda: store,
+          cantidad: cuant,
+          precio: price.toString(),
+        );
       },
     );
   }

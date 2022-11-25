@@ -57,7 +57,7 @@ class _TiendaListProdutsState extends State<TiendaListProduts> {
         child: const Icon(
           Icons.add,
           size: 35,
-          ),
+        ),
         onPressed: () async {
           Get.to(() => const AddProductT());
         },
@@ -71,8 +71,8 @@ class _TiendaListProdutsState extends State<TiendaListProduts> {
 
   Widget _getXlistView() {
     return Obx(() => ListView.builder(
-      padding: const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
-          itemCount: obteniendouserproducts(products).length,
+          padding: const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
+          itemCount: obteniendouserproducts(products).length - 1,
           itemBuilder: (context, index) {
             final producto = obteniendouserproducts(products)[index];
             return ListaProductosT(producto: producto);
