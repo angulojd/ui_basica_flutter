@@ -16,8 +16,12 @@ class _OnitsWayState extends State<OnitsWay> {
     return Scaffold(
       body: SingleChildScrollView(
           child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          const Text("¡GRACIAS POR TU COMPRA!"),
+          const Text(
+            "¡GRACIAS POR TU COMPRA!",
+            style: TextStyle(fontSize: 35),
+          ),
           const Text(
               "Hemos preparado la orden y las tiendas estan preparando tu pedido, porfa, dejanos saber como te fue"),
           Image.asset("assets/images/encamino.png"),
@@ -38,12 +42,15 @@ class _OnitsWayState extends State<OnitsWay> {
       context: context,
       builder: (context) => AlertDialog(
         title: Text("Que te parecio la App"),
-        content: Column(
-          children: [
-            const Text("Por favor danos un puntaje"),
-            const SizedBox(height: 32),
-            buildRating()
-          ],
+        content: SizedBox(
+          height: 200,
+          child: Column(
+            children: [
+              const Text("Por favor danos un puntaje"),
+              const SizedBox(height: 32),
+              buildRating()
+            ],
+          ),
         ),
         actions: [
           TextButton(
