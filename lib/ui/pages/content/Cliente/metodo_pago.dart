@@ -1,4 +1,6 @@
 import 'package:f_testing_template/ui/pages/content/Cliente/detalles_pedido.dart';
+import 'package:f_testing_template/ui/pages/content/Cliente/programa_pedido.dart';
+import 'package:f_testing_template/ui/pages/content/Cliente/recibo.dart';
 import 'package:flutter/material.dart';
 
 class PaymentMethodPage extends StatefulWidget {
@@ -42,7 +44,17 @@ class NameState extends State<PaymentMethodPage> {
               SizedBox(
                 height: 60,
                 width: 300,
-                child: ElevatedButton(onPressed: (){},
+                child: ElevatedButton(
+                  onPressed: () {
+                    Recibo.metopago = "Tarjeta de credito o debito";
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return const DeliverySchedulePage();
+                        },
+                      ),
+                    );
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -61,10 +73,20 @@ class NameState extends State<PaymentMethodPage> {
               SizedBox(
                 height: 60,
                 width: 300,
-                child: ElevatedButton(onPressed: (){},
+                child: ElevatedButton(
+                  onPressed: () {
+                    Recibo.metopago = "Nequi";
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return const DeliverySchedulePage();
+                        },
+                      ),
+                    );
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const[
+                    children: const [
                       Icon(Icons.square_outlined),
                       Text("Nequi")
                     ],
@@ -75,13 +97,20 @@ class NameState extends State<PaymentMethodPage> {
               SizedBox(
                 height: 60,
                 width: 300,
-                child: ElevatedButton(onPressed: (){},
+                child: ElevatedButton(
+                  onPressed: () {
+                    Recibo.metopago = "Daviplata";
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return const DeliverySchedulePage();
+                        },
+                      ),
+                    );
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const[
-                      Icon(Icons.house),
-                      Text("Daviplata")
-                    ],
+                    children: const [Icon(Icons.house), Text("Daviplata")],
                   ),
                 ),
               ),
@@ -91,57 +120,35 @@ class NameState extends State<PaymentMethodPage> {
                 width: 300,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
-                    Text("Pago en efectivo"),
-                    Icon(Icons.money)
-                  ],
+                  children: const [Text("Pago en efectivo"), Icon(Icons.money)],
                 ),
               ),
-               const SizedBox(height: 20),
+              const SizedBox(height: 20),
               SizedBox(
                 height: 60,
                 width: 300,
-                child: ElevatedButton(onPressed: (){},
+                child: ElevatedButton(
+                  onPressed: () {
+                    Recibo.metopago = "Efectivo";
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return const DeliverySchedulePage();
+                        },
+                      ),
+                    );
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const[
+                    children: const [
                       Icon(Icons.monetization_on),
                       Text("Efectivo")
                     ],
                   ),
                 ),
               ),
-              
             ],
           ),
-        ),
-      ),
-      bottomNavigationBar: SizedBox(
-        height: 70,
-        width: 350,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
-                Text("Total:"),
-                Text("7843"),
-              ],
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return const DeliveryDetails();
-                  },
-                ),
-              );
-              },
-              child: const Text("Continuar"),
-            ),
-          ],
         ),
       ),
     );

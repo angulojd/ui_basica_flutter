@@ -52,14 +52,18 @@ class _CarritoState extends State<Carrito> {
                 Icons.apple,
                 size: 50,
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text("Producto: ${widget.nombre}"),
-                  Text("Tienda: ${nombretienda(users, widget.tienda)}"),
-                  Text("${widget.cantidad} Unidades"),
-                  Text("Precio: \$${widget.precio}"),
-                ],
+              SizedBox(
+                width: 200,
+                height: 70,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text("Producto: ${widget.nombre}"),
+                    Text("Tienda: ${nombretienda(users, widget.tienda)}"),
+                    Text("${widget.cantidad} Unidades"),
+                    Text("Precio: \$${widget.precio}"),
+                  ],
+                ),
               ),
               IconButton(
                   onPressed: () {},

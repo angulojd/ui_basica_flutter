@@ -1,5 +1,5 @@
 import 'package:f_testing_template/ui/pages/content/Cliente/lista.dart';
-import 'package:f_testing_template/ui/pages/content/Cliente/lista_productos.dart';
+
 import 'package:f_testing_template/ui/pages/content/Cliente/mallacategorias.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/productos.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/segunda_pantalla.dart';

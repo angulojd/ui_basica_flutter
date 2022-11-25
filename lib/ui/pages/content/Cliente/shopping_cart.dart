@@ -4,7 +4,9 @@ import 'package:f_testing_template/services/auth.dart';
 import 'package:f_testing_template/services/productodb.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/Lista.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/carrito.dart';
+import 'package:f_testing_template/ui/pages/content/Cliente/metodo_pago.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/recibo.dart';
+import 'package:f_testing_template/ui/pages/content/Cliente/segunda_pantalla.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -57,6 +59,7 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
       }
     }
     for (int p = 0; p < Recibo.cantidadproducto.length; p++) {
+      Recibo.total = Recibo.total + Recibo.precioorden[p];
       debugPrint(Recibo.cantidadproducto[p]);
       debugPrint(Recibo.nombreproducto[p]);
       debugPrint(Recibo.nombretienda[p]);
@@ -68,16 +71,52 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
     calcularcarrito(products);
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Mi Carrito"),
-        automaticallyImplyLeading: false,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: const Icon(Icons.arrow_back_ios),
+          title: const Text("Mi Carrito"),
+          automaticallyImplyLeading: false,
+          leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(Icons.arrow_back_ios),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return const ProductListPage();
+                    },
+                  ),
+                );
+              },
+              child: const Text(
+                "Cra 70 #41-9",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ]),
+      body: generador(),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            const Text("¿Todo Listo?"),
+            Text("Precio Total: \$${Recibo.total}"),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return const PaymentMethodPage();
+                      },
+                    ),
+                  );
+                },
+                child: const Text("¡Comprar!"))
+          ],
         ),
       ),
-      body: generador(),
     );
   }
 
