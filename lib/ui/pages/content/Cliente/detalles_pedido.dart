@@ -1,6 +1,7 @@
 import 'package:f_testing_template/services/auth.dart';
 import 'package:f_testing_template/services/productodb.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/carrito.dart';
+import 'package:f_testing_template/ui/pages/content/Cliente/pedidoencamino.dart';
 import 'package:f_testing_template/ui/pages/content/Cliente/recibo.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -115,7 +116,13 @@ class NameState extends State<DeliveryDetails> {
             Text("Precio Total: \$${Recibo.total}"),
             ElevatedButton(
                 onPressed: () {
-                  debugPrint("hasta aqui llega");
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return OnitsWay();
+                      },
+                    ),
+                  );
                 },
                 child: const Text("Continuar"))
           ],

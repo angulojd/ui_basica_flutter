@@ -44,6 +44,7 @@ dependencies:
   assorted_layout_widgets: ^6.1.1
   google_maps_flutter: ^2.2.1
   google_maps_flutter_web: ^0.4.0+3
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:
