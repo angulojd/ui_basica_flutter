@@ -14,19 +14,36 @@ class _OnitsWayState extends State<OnitsWay> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          const Text(
-            "¡GRACIAS POR TU COMPRA!",
-            style: TextStyle(fontSize: 35),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+          title: const Text(
+            "Todo Listo!",
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           ),
-          const Text(
-              "Hemos preparado la orden y las tiendas estan preparando tu pedido, porfa, dejanos saber como te fue"),
-          Image.asset("assets/images/encamino.png"),
-        ],
-      )),
+          centerTitle: true,
+          
+      ),
+      body: Center(
+        child: SingleChildScrollView(
+            child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            const Text(
+              "¡GRACIAS POR TU COMPRA!",
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Text(
+                  "Hemos preparado la orden y las tiendas estan preparando tu pedido, porfa, dejanos saber como te fue"),
+            ),
+            Image.asset("assets/images/encamino.png"),
+          ],
+        )),
+      ),
       bottomNavigationBar: BottomAppBar(
           child: ElevatedButton(
         onPressed: () {
