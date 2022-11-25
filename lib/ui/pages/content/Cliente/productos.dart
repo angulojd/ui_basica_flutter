@@ -44,21 +44,6 @@ class _ProductListState extends State<ProductList> {
           icon: const Icon(Icons.arrow_back_ios),
         ),
         actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return const ProductListPage();
-                  },
-                ),
-              );
-            },
-            child: const Text(
-              "Cra 70 #41-9",
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
           IconButton(
             onPressed: () {
               for (var k = 0; k < Listilla.cantidadescarrito.length; k++) {
@@ -74,7 +59,19 @@ class _ProductListState extends State<ProductList> {
               );
             },
             icon: const Icon(Icons.shopping_basket_outlined),
-          )
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return const ProductListPage();
+                  },
+                ),
+              );
+            },
+            icon: Icon(Icons.edit_road),
+          ),
         ],
       ),
       body: SingleChildScrollView(

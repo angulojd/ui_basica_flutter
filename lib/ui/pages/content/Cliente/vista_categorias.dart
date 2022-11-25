@@ -39,42 +39,45 @@ class _CategoryViewPageState extends State<CategoryViewPage> {
         automaticallyImplyLeading: false,
         leading: IconButton(
           onPressed: () {
-            AuthService().signOut();
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return const ProductListPage();
+                },
+              ),
+            );
           },
-          icon: const Icon(Icons.logout),
+          icon: Icon(Icons.edit_road),
         ),
         actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return const ProductListPage();
-                  },
-                ),
-              );
-            },
-            child: const Text(
-              "Cra 70 #41-9",
-              style: TextStyle(color: Colors.white),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+              onPressed: () {
+                for (var k = 0; k < Listilla.cantidadescarrito.length; k++) {
+                  debugPrint("Producto Numero"
+                      "  ${k.toString()}: Nombre:${Listilla.nombrescarrito[k]} Cantidad: ${Listilla.cantidadescarrito[k]} Codigo: ${Listilla.codigoscarrito[k]}");
+                }
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return const ShoppingCartPage();
+                    },
+                  ),
+                );
+              },
+              icon: const Icon(Icons.shopping_basket_outlined),
             ),
           ),
-          IconButton(
-            onPressed: () {
-              for (var k = 0; k < Listilla.cantidadescarrito.length; k++) {
-                debugPrint("Producto Numero"
-                    "  ${k.toString()}: Nombre:${Listilla.nombrescarrito[k]} Cantidad: ${Listilla.cantidadescarrito[k]} Codigo: ${Listilla.codigoscarrito[k]}");
-              }
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return const ShoppingCartPage();
-                  },
-                ),
-              );
-            },
-            icon: const Icon(Icons.shopping_basket_outlined),
-          )
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+              onPressed: () {
+                AuthService().signOut();
+              },
+              icon: const Icon(Icons.logout),
+            ),
+          ),
         ],
       ),
       body: SingleChildScrollView(
