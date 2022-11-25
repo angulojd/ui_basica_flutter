@@ -36,20 +36,38 @@ class _CarritoState extends State<Carrito> {
   get users => controller.allUsers();
 
   Widget build(BuildContext context) {
-    return Container(
-      child: SizedBox(
-        height: 200,
-        width: 200,
+    return SizedBox(
+      width: 600,
+      height: 70,
+      child: Container(
         child: ElevatedButton(
           onPressed: (() {
             debugPrint("deberia hacer algo aqui?");
           }),
-          child: Column(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(widget.nombre),
-              Text(nombretienda(users, widget.tienda)),
-              Text(widget.cantidad),
-              Text(widget.precio),
+              const Icon(
+                Icons.apple,
+                size: 50,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text("Producto: ${widget.nombre}"),
+                  Text("Tienda: ${nombretienda(users, widget.tienda)}"),
+                  Text("${widget.cantidad} Unidades"),
+                  Text("Precio: \$${widget.precio}"),
+                ],
+              ),
+              IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.delete,
+                    size: 50,
+                    color: Colors.redAccent,
+                  )),
             ],
           ),
         ),

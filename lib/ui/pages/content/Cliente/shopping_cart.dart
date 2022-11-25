@@ -77,16 +77,12 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
           icon: const Icon(Icons.arrow_back_ios),
         ),
       ),
-      body: SingleChildScrollView(child: generador()),
+      body: generador(),
     );
   }
 
   Widget generador() {
-    return GridView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3, crossAxisSpacing: 12, mainAxisSpacing: 12),
+    return ListView.builder(
       padding: const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
       itemCount: Recibo.nombreproducto.length,
       itemBuilder: (context, index) {
@@ -94,11 +90,21 @@ class _ShoppingCartPageState extends State<ShoppingCartPage> {
         final store = Recibo.nombretienda[index];
         final cuant = Recibo.cantidadproducto[index];
         final price = Recibo.precioorden[index];
-        return Carrito(
-          nombre: name,
-          tienda: store,
-          cantidad: cuant,
-          precio: price.toString(),
+        return Column(
+          children: [
+            const SizedBox(
+              height: 10,
+            ),
+            Carrito(
+              nombre: name,
+              tienda: store,
+              cantidad: cuant,
+              precio: price.toString(),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+          ],
         );
       },
     );
